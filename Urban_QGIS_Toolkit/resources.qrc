@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/khg_main" >
+        <file>logo.png</file>
+    </qresource>
+</RCC>

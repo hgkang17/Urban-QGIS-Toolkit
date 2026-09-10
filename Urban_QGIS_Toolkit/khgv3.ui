@@ -1,0 +1,3153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DockWidget</class>
+ <widget class="QDockWidget" name="DockWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>782</width>
+    <height>875</height>
+   </rect>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(251, 251, 255);</string>
+  </property>
+  <property name="windowTitle">
+   <string>Urban QGIS Toolkit</string>
+  </property>
+  <widget class="QWidget" name="mnum">
+   <layout class="QFormLayout" name="formLayout_3">
+    <item row="0" column="0" colspan="2">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="font">
+       <font>
+        <family>Noto Sans KR</family>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>747</width>
+         <height>928</height>
+        </rect>
+       </property>
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="sizeIncrement">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="baseSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Noto Sans KR Medium</family>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QTabWidget::pane {
+    border: none;
+}
+
+QTabBar {
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* 아래쪽은 안 씀 = 기본값 0 = 각짐 */
+}
+
+QTabBar::tab {
+    background: transparent;
+    color: #555;
+    padding: 10px 0px;
+    width: 190px;
+    border: 3px solid transparent;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+QTabBar::tab:selected {
+    background-color: rgb(42,120,214);
+    color: rgb(255, 255, 255);
+    border: 5px solid rgb(255, 255, 255);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}</string>
+          </property>
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>16</width>
+            <height>13</height>
+           </size>
+          </property>
+          <property name="elideMode">
+           <enum>Qt::ElideNone</enum>
+          </property>
+          <property name="usesScrollButtons">
+           <bool>true</bool>
+          </property>
+          <property name="documentMode">
+           <bool>false</bool>
+          </property>
+          <property name="tabsClosable">
+           <bool>false</bool>
+          </property>
+          <property name="movable">
+           <bool>false</bool>
+          </property>
+          <property name="tabBarAutoHide">
+           <bool>false</bool>
+          </property>
+          <widget class="QWidget" name="tab">
+           <property name="styleSheet">
+            <string notr="true">  background-color: rgb(255, 255, 255); </string>
+           </property>
+           <attribute name="title">
+            <string>유틸리티</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="leftMargin">
+             <number>6</number>
+            </property>
+            <property name="topMargin">
+             <number>3</number>
+            </property>
+            <item>
+             <widget class="QGroupBox" name="groupBox">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>80</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 10px;
+    padding: 0px 0px;
+}</string>
+              </property>
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_10">
+               <property name="leftMargin">
+                <number>6</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>6</number>
+               </property>
+               <property name="bottomMargin">
+                <number>6</number>
+               </property>
+               <property name="spacing">
+                <number>3</number>
+               </property>
+               <item row="2" column="2">
+                <widget class="QPushButton" name="btn_select_layer">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>선택 항목만
+켜기</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QPushButton" name="btn_zoom">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <pointsize>9</pointsize>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>ZOOM
+드래그 확대</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QPushButton" name="btn_Vworld_satellite">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>브이월드
+위성사진</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+    font-weight: bold;
+    color: rgb(85, 93, 109);
+    padding-left: 4px;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>지도 조작</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QPushButton" name="btn_jpg_export">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <pointsize>9</pointsize>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>현재화면
+JPG 내보내기</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="3">
+                <widget class="QPushButton" name="btn_select_layer_up">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>선택 항목
+최상단 이동</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_2">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>10000</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 10px;
+    padding: 0px 0px;
+}</string>
+              </property>
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_11">
+               <property name="leftMargin">
+                <number>6</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>6</number>
+               </property>
+               <property name="bottomMargin">
+                <number>6</number>
+               </property>
+               <property name="spacing">
+                <number>1</number>
+               </property>
+               <item row="5" column="3" colspan="2">
+                <widget class="QPushButton" name="btn_red2point_line">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>34</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>1000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>빨간색
+이점쇄선</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QPushButton" name="btn_SymBol_paste">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>34</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>붙여넣기</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="8">
+                <widget class="QGroupBox" name="groupBox_8">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>34</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 0px 0px;
+}</string>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_15">
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="horizontalSpacing">
+                   <number>0</number>
+                  </property>
+                  <property name="verticalSpacing">
+                   <number>3</number>
+                  </property>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="input_line_width">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>30</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLineEdit {
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    padding-left: 5px;
+}</string>
+                    </property>
+                    <property name="frame">
+                     <bool>false</bool>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QPushButton" name="btn_line">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>50</width>
+                      <height>10000</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Noto Sans KR</family>
+                      <weight>50</weight>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+   color: rgb(85, 93, 109);
+    border-radius: 5px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+</string>
+                    </property>
+                    <property name="text">
+                     <string>선 두께</string>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>16</width>
+                      <height>16</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QPushButton" name="btn_Symbol_outline_del">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>1000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>외곽선X</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="8">
+                <widget class="QPushButton" name="btn_Symbol_Color">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,200,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>색상</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="6">
+                <widget class="QPushButton" name="btn_Symbol_Clear_fill_this">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>34</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>40</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>채우기
+초기화</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2" colspan="2">
+                <widget class="QPushButton" name="btn_Symbol_fill_del">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>11</width>
+                   <height>34</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="sizeIncrement">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>채우기X</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="8">
+                <widget class="QPushButton" name="btn_label_buffer">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>라벨표시</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="4">
+                <widget class="QPushButton" name="btn_white_line">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>34</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>1000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>흰색
+외곽선</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_4">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+    font-weight: bold;
+    color: rgb(85, 93, 109);
+    padding-left: 4px;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>심볼 도구</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QPushButton" name="btn_SymBol_copy">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>34</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>심볼복사</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="7">
+                <widget class="QPushButton" name="btn_Symbol_Clear_outline_this">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>34</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>40</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>외곽선
+초기화</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="6" colspan="2">
+                <widget class="QPushButton" name="btn_Symbol_Clear">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>34</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>심볼 초기화
+(전체)</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_3">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>80</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 10px;
+    padding: 0px 0px;
+}</string>
+              </property>
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_12">
+               <property name="leftMargin">
+                <number>6</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>6</number>
+               </property>
+               <property name="bottomMargin">
+                <number>6</number>
+               </property>
+               <property name="spacing">
+                <number>3</number>
+               </property>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="btn_area_cal">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>AREA
+필드계산</string>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>16</width>
+                   <height>16</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_5">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+    font-weight: bold;
+    color: rgb(85, 93, 109);
+    padding-left: 4px;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>데이터 / 계산</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QPushButton" name="btn_PNU">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>연속지적도
+PNU 주소변환</string>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>16</width>
+                   <height>16</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QPushButton" name="btn_MNUM_SymBol">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="sizeIncrement">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>MNUM 6자리
+SYMBOL 분류</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_4">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 0px 0px;
+}</string>
+              </property>
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout">
+               <property name="spacing">
+                <number>12</number>
+               </property>
+               <property name="leftMargin">
+                <number>5</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>5</number>
+               </property>
+               <property name="bottomMargin">
+                <number>1</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_6">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+    color: rgb(85, 93, 109);
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>작업 진행률</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QProgressBar" name="progressBar">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>260</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>260</width>
+                   <height>13</height>
+                  </size>
+                 </property>
+                 <property name="baseSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="contextMenuPolicy">
+                  <enum>Qt::DefaultContextMenu</enum>
+                 </property>
+                 <property name="layoutDirection">
+                  <enum>Qt::LeftToRight</enum>
+                 </property>
+                 <property name="autoFillBackground">
+                  <bool>false</bool>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QProgressBar {
+    color: rgb(3, 90, 166);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+QProgressBar::chunk {
+    background-color: rgb(42,120,214); /* 실제 채워지는 색상 */
+    border-radius: 20px;                  /* chunk도 똑같이 둥글게 */
+    margin: 2px;                          /* 바깥 테두리 안쪽으로 살짝 여백 줘서 겹침 방지 */
+}</string>
+                 </property>
+                 <property name="inputMethodHints">
+                  <set>Qt::ImhNone</set>
+                 </property>
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
+                 <property name="value">
+                  <number>0</number>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+                 </property>
+                 <property name="textVisible">
+                  <bool>false</bool>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="invertedAppearance">
+                  <bool>false</bool>
+                 </property>
+                 <property name="textDirection">
+                  <enum>QProgressBar::TopToBottom</enum>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_percent">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+    color: rgb(85, 93, 109);
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>0%</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_5">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>10000</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 10px;
+    padding: 0px 0px;
+}</string>
+              </property>
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_13">
+               <property name="leftMargin">
+                <number>6</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>6</number>
+               </property>
+               <property name="bottomMargin">
+                <number>6</number>
+               </property>
+               <property name="spacing">
+                <number>3</number>
+               </property>
+               <item row="6" column="0">
+                <widget class="QLineEdit" name="input_search_eum">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>400</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+                 </property>
+                 <property name="inputMask">
+                  <string/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>토지이음 검색</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="3">
+                <widget class="QPushButton" name="btn_Simple_search">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>10000</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>주소 검색</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="label_14">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+ 
+    color:rgb(130, 130, 130);
+    padding-left: 1px;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>외부 사이트 연동 검색</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLineEdit" name="input_search_kakao">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>400</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">   
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+                 </property>
+                 <property name="inputMask">
+                  <string/>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>카카오맵 검색</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QPushButton" name="btn_point_kakao">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>30</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>55</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color:rgb(150, 150, 150);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>16</width>
+                   <height>16</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="2">
+                <widget class="QLabel" name="label_15">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+      padding-left: 1px;
+    color:rgb(130, 130, 130);
+
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>지도 이동(단순)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="2">
+                <widget class="QPushButton" name="btn_point_eum">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>30</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>55</width>
+                   <height>10000</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color:rgb(150, 150, 150);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>16</width>
+                   <height>16</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="3">
+                <widget class="QGroupBox" name="groupBox_9">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>1000</width>
+                   <height>1000</height>
+                  </size>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 0px 0px;
+}</string>
+                 </property>
+                 <property name="title">
+                  <string/>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_3">
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="label_13">
+                    <property name="minimumSize">
+                     <size>
+                      <width>10</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>15</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Noto Sans KR</family>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QLabel {
+    font-weight: bold;
+    color: rgb(85, 93, 109);
+
+}
+</string>
+                    </property>
+                    <property name="text">
+                     <string> 검색 기능</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="eum_kakao_status">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Noto Sans KR Medium</family>
+                      <weight>50</weight>
+                      <bold>false</bold>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_6">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>10000</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 10px;
+    padding: 0px 0px;
+}</string>
+              </property>
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_14">
+               <property name="leftMargin">
+                <number>6</number>
+               </property>
+               <property name="topMargin">
+                <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>6</number>
+               </property>
+               <property name="bottomMargin">
+                <number>6</number>
+               </property>
+               <property name="spacing">
+                <number>6</number>
+               </property>
+               <item row="3" column="0" colspan="5">
+                <widget class="QLabel" name="label_18">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+ 
+    color:rgb(130, 130, 130);
+    padding-left: 1px;
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Vworld 로그인 후 조건검색을 이용할 수 있습니다</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QLineEdit" name="input_pw">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+                 </property>
+                 <property name="echoMode">
+                  <enum>QLineEdit::Password</enum>
+                 </property>
+                 <property name="placeholderText">
+                  <string>비밀번호(체크시 저장)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="3">
+                <widget class="QCheckBox" name="cb_save_PW">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>18</width>
+                   <height>21</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-1</number>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:hover {
+    border: 1px solid rgb(109, 167, 242);
+}
+
+QCheckBox::indicator:checked {
+    background-color:  rgb(42,120,214);
+    border: 1px solid  rgb(42,120,214);
+}
+
+</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>15</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <property name="autoRepeat">
+                  <bool>false</bool>
+                 </property>
+                 <property name="autoRepeatDelay">
+                  <number>300</number>
+                 </property>
+                 <property name="autoRepeatInterval">
+                  <number>100</number>
+                 </property>
+                 <property name="tristate">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_17">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>60</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QLabel {
+
+    color: rgb(85, 93, 109);
+    padding-left: 4px;
+
+}
+</string>
+                 </property>
+                 <property name="text">
+                  <string>Vworld</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="4">
+                <widget class="QPushButton" name="btn_login">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>60</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+                 </property>
+                 <property name="text">
+                  <string>로그인</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="5">
+                <widget class="QLineEdit" name="input_search_vworld">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>데이터 검색</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLineEdit" name="input_id">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR</family>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>아이디(체크시 저장)</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2" colspan="3">
+                <widget class="QLabel" name="Vworld_status">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>맑은 고딕</family>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QCheckBox" name="cb_save_ID">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>18</width>
+                   <height>21</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-1</number>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:hover {
+    border: 1px solid rgb(109, 167, 242);
+}
+
+QCheckBox::indicator:checked {
+    background-color:  rgb(42,120,214);
+    border: 1px solid  rgb(42,120,214);
+}
+
+</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>15</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <property name="autoRepeat">
+                  <bool>false</bool>
+                 </property>
+                 <property name="autoRepeatDelay">
+                  <number>300</number>
+                 </property>
+                 <property name="autoRepeatInterval">
+                  <number>100</number>
+                 </property>
+                 <property name="tristate">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupBox_7">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>10000</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 10px;
+    padding: 0px 0px;
+}</string>
+              </property>
+              <property name="title">
+               <string/>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QLabel" name="label_11">
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <pointsize>10</pointsize>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(85, 93, 109);</string>
+                 </property>
+                 <property name="text">
+                  <string>API</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLineEdit" name="input_API">
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Light</family>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                 </property>
+                 <property name="placeholderText">
+                  <string>브이월드 API 인증키</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="cb_save_api">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>18</width>
+                   <height>21</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Segoe UI</family>
+                   <pointsize>10</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="toolTipDuration">
+                  <number>-1</number>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:hover {
+    border: 1px solid rgb(109, 167, 242);
+}
+
+QCheckBox::indicator:checked {
+    background-color:  rgb(42,120,214);
+    border: 1px solid  rgb(42,120,214);
+}
+
+</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>15</width>
+                   <height>15</height>
+                  </size>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <property name="autoRepeat">
+                  <bool>false</bool>
+                 </property>
+                 <property name="autoRepeatDelay">
+                  <number>300</number>
+                 </property>
+                 <property name="autoRepeatInterval">
+                  <number>100</number>
+                 </property>
+                 <property name="tristate">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="label_api">
+                 <property name="font">
+                  <font>
+                   <family>Noto Sans KR Medium</family>
+                   <pointsize>10</pointsize>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">color: rgb(85, 93, 109);</string>
+                 </property>
+                 <property name="text">
+                  <string>API 저장</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_2">
+           <property name="styleSheet">
+            <string notr="true">  background-color: rgb(255, 255, 255); </string>
+           </property>
+           <attribute name="title">
+            <string>Vworld API 호출</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="cb_Temporary_api">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>18</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="toolTipDuration">
+               <number>-1</number>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:hover {
+    border: 1px solid rgb(109, 167, 242);
+}
+
+QCheckBox::indicator:checked {
+    background-color:  rgb(42,120,214);
+    border: 1px solid  rgb(42,120,214);
+}
+
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>15</width>
+                <height>15</height>
+               </size>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <property name="autoRepeat">
+               <bool>false</bool>
+              </property>
+              <property name="autoRepeatDelay">
+               <number>300</number>
+              </property>
+              <property name="autoRepeatInterval">
+               <number>100</number>
+              </property>
+              <property name="tristate">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" colspan="3">
+             <widget class="QTreeView" name="treeView">
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" colspan="2">
+             <widget class="QLineEdit" name="input_tree_search">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+              </property>
+              <property name="placeholderText">
+               <string>레이어 검색 (예: 용도지역, 시군구...)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QPushButton" name="btn_tree_toggle_all">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>60</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+    color: rgb(85, 93, 109);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+              </property>
+              <property name="text">
+               <string>접기</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="label_Temporary">
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(85, 93, 109);</string>
+              </property>
+              <property name="text">
+               <string>파일 저장 (기본값 : 임시레이어, 체크 시 현재화면 SHP저장)</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="3">
+             <widget class="QLabel" name="label_19">
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(85, 93, 109);</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;▶ 2D데이터 : 브이월드 자체 방식 데이터 &lt;/span&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; ▶ WFS : 국제 표준 기준 방식 데이터&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;.00&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;둘다 같은 자료입니다.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTextEdit" name="log">
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>370</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Noto Sans KR</family>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+    background-color: rgb(13, 27, 61);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="btn_clear_log">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>362</width>
+            <height>10000</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Noto Sans KR Medium</family>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">/* 1. 기본 상태 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color:  rgb(42,120,214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 1px 1px;                    /*여백*/
+}
+
+/* 2. 마우스를 올렸을 때 (Hover) */
+QPushButton:hover {
+    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+}
+
+/* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
+QPushButton:pressed {
+    background-color: rgb(160, 196, 242);  /* 원래 색상보다 어둡게 해서 눌린 느낌 전달 */
+    border: 2px solid rgb(50, 50, 50);  /* 테두리를 두껍게 하거나 선 색상을 어둡게 */
+    padding-left: 3px;                    /* 텍스트가 미세하게 움직이는 효과 (선택사항) */
+    padding-top: 3px;
+}</string>
+          </property>
+          <property name="text">
+           <string>로그 초기화</string>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>16</width>
+            <height>16</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLineEdit" name="lineWD_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>10000</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+     border: 1px  solid rgb(251, 251, 255);
+    border-radius: 5px;
+    background-color: rgb(251, 251, 255);
+    padding-left: 5px;
+}</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

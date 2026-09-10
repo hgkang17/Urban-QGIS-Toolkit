@@ -1,0 +1,19 @@
+# 파이썬 캐시
+__pycache__/
+*.py[cod]
+*.pyo
+
+# 빌드 산출물
+dist/
+build/
+*.zip
+
+# 편집기 / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 개발 보조 도구 (공개 배포 대상 아님)
+.claude/
+.ua/

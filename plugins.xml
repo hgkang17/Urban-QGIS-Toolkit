@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins>
+  <pyqgis_plugin name="Urban QGIS Toolkit" version="1.0.0" plugin_id="1">
+    <description>도시계획 업무를 위한 QGIS 자동화 도구 모음입니다. 연속주제도 범례분류, 면적계산, PNU 주소변환, 선두께 일괄조정, 지도 검색 연동, 브이월드 공간정보 연동 기능을 제공합니다.</description>
+    <about>도시계획·지적 실무에서 반복되는 작업을 자동화하는 통합 도구 모음입니다.
+.
+주요 기능
+1. 연속주제도 MNUM 6자리 값 추출 및 범례 자동 분류
+2. 면적(area) 자동 계산
+3. 레이어 선두께 일괄 조정
+4. 연속지적도 PNU 주소 변환
+5. 카카오맵 / 토지이음 검색 연동 (위치 확대 및 브라우저 실행)
+6. 브이월드 공간정보 다운로드 페이지 연동
+7. 브이월드 API 공간데이터 호출 (WFS / 2D 지도 API)
+8. 심볼 복사·붙여넣기 및 색상 일괄 지정
+9. 라벨 필드 지정, 지도 JPG 내보내기, 영역 확대 도구
+.
+일부 검색 기능은 Playwright 설치가 필요합니다. 플러그인 폴더의
+install_playwright.bat 파일을 실행하여 설치할 수 있습니다.</about>
+    <version>1.0.0</version>
+    <qgis_minimum_version>3.22</qgis_minimum_version>
+    <qgis_maximum_version>3.99</qgis_maximum_version>
+    <homepage>https://github.com/hgkang17/Urban-QGIS-Toolkit</homepage>
+    <file_name>Urban_QGIS_Toolkit.zip</file_name>
+    <icon>https://raw.githubusercontent.com/hgkang17/Urban-QGIS-Toolkit/main/Urban_QGIS_Toolkit/logo.png</icon>
+    <author_name>Huigu Kang</author_name>
+    <download_url>https://github.com/hgkang17/Urban-QGIS-Toolkit/releases/download/v1.0.0/Urban_QGIS_Toolkit.zip</download_url>
+    <uploaded_by>Huigu Kang</uploaded_by>
+    <create_date>2026-09-10T15:05:12.646171</create_date>
+    <update_date>2026-09-10T15:05:12.646171</update_date>
+    <experimental>False</experimental>
+    <deprecated>False</deprecated>
+    <trusted>False</trusted>
+    <server>False</server>
+    <external_dependencies />
+    <downloads>0</downloads>
+    <average_vote>0</average_vote>
+    <rating_votes>0</rating_votes>
+    <tracker>https://github.com/hgkang17/Urban-QGIS-Toolkit/issues</tracker>
+    <repository>https://github.com/hgkang17/Urban-QGIS-Toolkit</repository>
+    <tags>urban planning,cadastral,korea,vworld,pnu,automation,wfs,symbology,도시계획,지적</tags>
+    <changelog>1.0.0 - 2026-09-10
+- 최초 공개 배포</changelog>
+  </pyqgis_plugin>
+</plugins>
