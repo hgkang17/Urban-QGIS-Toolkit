@@ -48,6 +48,7 @@ from .Simple_search_file import (
     open_simple_search,
 )
 from .labe_file import label_buffer
+from .update_check import check_for_update
 from .tree_search_filter import RecursiveFilterProxyModel
 
 
@@ -550,6 +551,7 @@ class kAutoLoaderPlugin:
         self.action = QAction(QIcon(icon), '자동화', self.iface.mainWindow())
         self.iface.addToolBarIcon(self.action)
         self.action.triggered.connect(self.run)
+        self.update_reply = check_for_update(self.iface, cmd_folder)
 
     def run(self):
         if not self.pluginIsActive:
