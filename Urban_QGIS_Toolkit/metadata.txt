@@ -1,6 +1,6 @@
 [general]
 name=Urban QGIS Toolkit
-qgisMinimumVersion=3.22
+qgisMinimumVersion=3.26
 qgisMaximumVersion=4.99
 supportsQt6=True
 description=도시계획 업무를 위한 QGIS 자동화 도구 모음입니다. 연속주제도 범례분류, 면적계산, PNU 주소변환, 선두께 일괄조정, 지도 검색 연동, 브이월드 공간정보 연동 기능을 제공합니다.
@@ -37,4 +37,4 @@ license=GPL-3.0-or-later
 changelog=
   1.0.0 - 2026-09-11
   - 최초 공개 배포
-  - QGIS 4.x (Qt6) 지원
+  - QGIS 3.26 ~ 4.x 지원 (Qt6 포함)
