@@ -217,7 +217,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -274,7 +274,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -331,7 +331,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -416,7 +416,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -472,7 +472,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -572,7 +572,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -628,7 +628,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -820,7 +820,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -875,7 +875,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(42, 220, 234,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -930,7 +930,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -992,7 +992,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -1047,7 +1047,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -1102,7 +1102,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -1186,7 +1186,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -1241,7 +1241,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -1297,7 +1297,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -1397,7 +1397,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -1487,7 +1487,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -1555,7 +1555,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -1882,7 +1882,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */
@@ -2481,7 +2481,7 @@ QPushButton {
 
 /* 2. 마우스를 올렸을 때 (Hover) */
 QPushButton:hover {
-    background-color: rgb(109, 167, 242,0.2); /* 원래 색상보다 약간 밝게 */
+    background-color: rgb(109, 167, 242,0.8); /* 원래 색상보다 약간 밝게 */
 }
 
 /* 3. 버튼을 클릭했을 때 (Pressed) - 애니메이션 효과 대체 */

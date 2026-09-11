@@ -1,4 +1,5 @@
 import os
+import re
 import logging
 import asyncio
 from qgis.PyQt import QtCore, QtWidgets
@@ -199,6 +200,12 @@ def _unique_download_path(download_directory, filename):
             return target_path
         number += 1
 
+
+def _plain_text(html_text):
+    text = re.sub(r"<br\s*/?>", " ", html_text or "", flags=re.IGNORECASE)
+    return re.sub(r"<[^>]+>", "", text).strip()
+
+
 def vworld_backend_login(dock_widget):
     user_id = ""
     user_pw = ""
@@ -224,33 +231,30 @@ def vworld_backend_login(dock_widget):
                 dock_widget.Vworld_status.setText("Playwright 미설치")
             return
 
+        browser = None
+        login_ok = False
         try:
             if not hasattr(dock_widget, '_playwright_instance') or not dock_widget._playwright_instance:
                 dock_widget._playwright_instance = await async_playwright().start()
 
-            context = getattr(dock_widget, "vworld_context", None)
-            if context is not None:
+            old_context = getattr(dock_widget, "vworld_context", None)
+            if old_context is not None and old_context is not getattr(dock_widget, "vworld_visible_context", None):
                 try:
-                    page = await context.new_page()
-                    browser = context.browser
+                    await dock_widget.vworld_browser.close()
                 except Exception:
-                    context = None
+                    pass
+            dock_widget.vworld_context = None
 
-            if context is None:
-                browser = await dock_widget._playwright_instance.chromium.launch(
-                    **_chrome_launch_options(
-                        headless=True,
-                        args=[]
-                    )
+            browser = await dock_widget._playwright_instance.chromium.launch(
+                **_chrome_launch_options(
+                    headless=True,
+                    args=[]
                 )
-                context = await browser.new_context(
-                    viewport={'width': 1920, 'height': 1080}
-                )
-                page = await context.new_page()
-
-            dock_widget.vworld_browser = browser
-            dock_widget.vworld_context = context
-            dock_widget.vworld_page = page
+            )
+            context = await browser.new_context(
+                viewport={'width': 1920, 'height': 1080}
+            )
+            page = await context.new_page()
 
             if hasattr(dock_widget, 'Vworld_status'):
                 dock_widget.Vworld_status.setText("로그인 시도 중")
@@ -259,7 +263,10 @@ def vworld_backend_login(dock_widget):
 
             await page.goto("https://www.vworld.kr/v4po_usrlogin_a001.do", wait_until="domcontentloaded")
 
-            await page.wait_for_selector("#loginId", timeout=10000)
+            try:
+                await page.wait_for_selector("#loginId", timeout=10000)
+            except Exception:
+                raise RuntimeError(f"로그인 입력칸을 찾지 못했습니다 (현재 페이지: {await page.title()} / {page.url})")
             await page.locator("#loginId").fill(user_id)
             await page.wait_for_timeout(100)
 
@@ -267,33 +274,65 @@ def vworld_backend_login(dock_widget):
             await page.locator("#loginPwd").fill(user_pw)
             await page.wait_for_timeout(100)
 
+            login_result = {}
+
+            async def capture_login_result(route):
+                response = await route.fetch()
+                try:
+                    login_result.update((await response.json()).get("resultMap") or {})
+                except Exception:
+                    pass
+                await route.fulfill(response=response)
+
+            await page.route(lambda url: "v4po_usrlogin_a004.do" in url, capture_login_result)
+
             button_selector = "button.bt.max.bg.primary"
-            await page.click(button_selector)
+            async with page.expect_response(lambda r: "v4po_usrlogin_a004.do" in r.url, timeout=10000):
+                await page.click(button_selector)
+            result = login_result.get("result")
+            message = _plain_text(login_result.get("msg"))
 
-            error_selector = "#dialogMsg .infotxt.msg"
+            if result == "success":
+                await page.wait_for_timeout(1500)
+                await page.wait_for_load_state("load")
+                login_ok = True
 
-            try:
-                await page.wait_for_selector(error_selector, timeout=2500, state="visible")
+                dock_widget.vworld_browser = browser
+                dock_widget.vworld_context = context
+                dock_widget.vworld_page = page
 
-                error_text = await page.locator(error_selector).inner_text()
-                error_text = error_text.strip() if error_text else "로그인 정보가 올바르지 않습니다."
-
-                if hasattr(dock_widget, 'Vworld_status'):
-                    dock_widget.Vworld_status.setText(f"로그인 실패: {error_text}")
-                    dock_widget.Vworld_status.setStyleSheet("color: red; font-weight: bold;")
-                return
-
-            except:
                 if hasattr(dock_widget, 'Vworld_status'):
                     dock_widget.Vworld_status.setText("로그인 완료")
                     dock_widget.Vworld_status.setStyleSheet("color: blue; font-weight: bold;")
-
+            elif result == "error":
+                print(f"[ERROR] 브이월드 로그인 실패: {message}")
+                if hasattr(dock_widget, 'Vworld_status'):
+                    dock_widget.Vworld_status.setText("로그인 실패: 아이디·비밀번호 확인")
+                    dock_widget.Vworld_status.setStyleSheet("color: red; font-weight: bold;")
+            elif not result:
+                print("[ERROR] 브이월드 로그인 결과를 확인하지 못했습니다.")
+                if hasattr(dock_widget, 'Vworld_status'):
+                    dock_widget.Vworld_status.setText("로그인 실패")
+                    dock_widget.Vworld_status.setStyleSheet("color: red;")
+            else:
+                print(f"[WARN] 브이월드 안내: {message}")
+                print("[WARN] 브이월드 사이트(https://www.vworld.kr)에서 직접 로그인해 안내에 따라 처리한 뒤 다시 로그인하세요.")
+                if hasattr(dock_widget, 'Vworld_status'):
+                    dock_widget.Vworld_status.setText("비밀번호 변경 필요 (사이트)")
+                    dock_widget.Vworld_status.setStyleSheet("color: red; font-weight: bold;")
 
         except Exception as err:
             print(f"[ERROR] 백그라운드 로그인 실패: {err}")
             if hasattr(dock_widget, 'Vworld_status'):
                 dock_widget.Vworld_status.setText("로그인 실패")
                 dock_widget.Vworld_status.setStyleSheet("color: red;")
+
+        finally:
+            if not login_ok and browser is not None:
+                try:
+                    await browser.close()
+                except Exception:
+                    pass
 
     try:
         loop = asyncio.get_event_loop()
@@ -312,8 +351,8 @@ def vworld_backend_search(dock_widget):
         return
 
     search_query = ""
-    if hasattr(dock_widget, 'input_serch'):
-        search_query = dock_widget.input_serch.text().strip()
+    if hasattr(dock_widget, 'input_search_vworld'):
+        search_query = dock_widget.input_search_vworld.text().strip()
 
     if not search_query:
         QtWidgets.QMessageBox.warning(dock_widget, "경고", "검색어를 입력해 주세요.")
@@ -339,7 +378,7 @@ def vworld_backend_search(dock_widget):
                 chrome_args.append("--start-maximized")
 
             visible_context = getattr(dock_widget, "vworld_visible_context", None)
-            if visible_context is None:
+            if dock_widget.vworld_context is not visible_context:
                 try:
                     await dock_widget.vworld_browser.close()
                 except Exception:

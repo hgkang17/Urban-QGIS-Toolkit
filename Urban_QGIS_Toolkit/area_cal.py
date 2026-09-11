@@ -46,7 +46,7 @@ def area_cal(iface, dock_widget):
             expression = QgsExpression("$area")
         else:
             decimal_name = "area_CAD"
-            integer_name = "area_Cint"
+            integer_name = "area_int"
             expression = QgsExpression("area($geometry)")
 
         integer_field_type = QVariant.Double if is_shapefile else QVariant.LongLong
@@ -65,7 +65,7 @@ def area_cal(iface, dock_widget):
             if not layer.dataProvider().deleteAttributes(delete_indexes):
                 failed_layers.append(layer.name())
                 QMessageBox.warning(
-                    areacal,
+                    dock_widget,
                     "기존 필드 삭제 실패",
                     f"'{layer.name()}' 레이어의 기존 면적 필드를 삭제하지 못했습니다.",
                 )
@@ -83,7 +83,7 @@ def area_cal(iface, dock_widget):
         if decimal_index == -1 or integer_index == -1:
             failed_layers.append(layer.name())
             QMessageBox.warning(
-                areacal,
+                dock_widget,
                 "필드 생성 실패",
                 f"'{layer.name()}' 레이어에 면적 필드를 생성하지 못했습니다.\n"
                 "레이어가 읽기 전용인지 또는 DBF 필드 제한을 확인해주세요.",
@@ -117,10 +117,10 @@ def area_cal(iface, dock_widget):
 
             current_progress += 1
             if current_progress % ui_update_interval == 0:
-                areacal.progressBar.setValue(current_progress)
+                dock_widget.progressBar.setValue(current_progress)
                 QCoreApplication.processEvents()
 
-        areacal.progressBar.setValue(current_progress)
+        dock_widget.progressBar.setValue(current_progress)
         QCoreApplication.processEvents()
 
         if not update_failed and updates:
@@ -129,7 +129,7 @@ def area_cal(iface, dock_widget):
         if update_failed:
             failed_layers.append(layer.name())
             QMessageBox.warning(
-                areacal,
+                dock_widget,
                 "면적 저장 실패",
                 f"'{layer.name()}' 레이어의 면적 값을 저장하지 못했습니다.",
             )

@@ -20,7 +20,7 @@ about=
   .
   일부 검색 기능은 Playwright 설치가 필요합니다. 플러그인 폴더의
   install_playwright.bat 파일을 실행하여 설치할 수 있습니다.
-version=1.0.0
+version=1.0.1
 author=Huigu Kang
 email=hgkang17@naver.com
 homepage=https://github.com/hgkang17/Urban-QGIS-Toolkit
@@ -35,6 +35,13 @@ server=False
 hasProcessingProvider=False
 license=GPL-3.0-or-later
 changelog=
+  1.0.1 - 2026-09-11
+  - 브이월드 검색 시 검색어를 입력해도 "검색어를 입력해 주세요"가 뜨던 문제 수정
+  - 브이월드 로그인 개선: 비밀번호 사용기간(6개월) 초과 안내를 구분해 표시, 재로그인 실패 문제 수정
+  - 면적계산이 실행되지 않던 문제 수정
+  - 면적계산 정수 필드명 변경: area_Cint -> area_int
+  - 버튼에 마우스를 올렸을 때 색상 조정
+  .
   1.0.0 - 2026-09-11
   - 최초 공개 배포
   - QGIS 3.26 ~ 4.x 지원 (Qt6 포함)
