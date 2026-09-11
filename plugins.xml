@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugins>
-  <pyqgis_plugin name="Urban QGIS Toolkit" version="1.0.1" plugin_id="1">
+  <pyqgis_plugin name="Urban QGIS Toolkit" version="1.0.2" plugin_id="1">
     <description>도시계획 업무를 위한 QGIS 자동화 도구 모음입니다. 연속주제도 범례분류, 면적계산, PNU 주소변환, 선두께 일괄조정, 지도 검색 연동, 브이월드 공간정보 연동 기능을 제공합니다.</description>
     <about>도시계획·지적 실무에서 반복되는 작업을 자동화하는 통합 도구 모음입니다.
 .
@@ -17,17 +17,17 @@
 .
 일부 검색 기능은 Playwright 설치가 필요합니다. 플러그인 폴더의
 install_playwright.bat 파일을 실행하여 설치할 수 있습니다.</about>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <qgis_minimum_version>3.26</qgis_minimum_version>
     <qgis_maximum_version>4.99</qgis_maximum_version>
     <homepage>https://github.com/hgkang17/Urban-QGIS-Toolkit</homepage>
     <file_name>Urban_QGIS_Toolkit.zip</file_name>
     <icon>https://raw.githubusercontent.com/hgkang17/Urban-QGIS-Toolkit/main/Urban_QGIS_Toolkit/logo.png</icon>
     <author_name>Huigu Kang</author_name>
-    <download_url>https://github.com/hgkang17/Urban-QGIS-Toolkit/releases/download/v1.0.1/Urban_QGIS_Toolkit.zip</download_url>
+    <download_url>https://github.com/hgkang17/Urban-QGIS-Toolkit/releases/download/v1.0.2/Urban_QGIS_Toolkit.zip</download_url>
     <uploaded_by>Huigu Kang</uploaded_by>
-    <create_date>2026-09-11T01:46:23.723533</create_date>
-    <update_date>2026-09-11T01:46:23.723533</update_date>
+    <create_date>2026-09-11T02:01:07.564522</create_date>
+    <update_date>2026-09-11T02:01:07.564522</update_date>
     <experimental>False</experimental>
     <deprecated>False</deprecated>
     <trusted>False</trusted>
@@ -39,7 +39,10 @@ install_playwright.bat 파일을 실행하여 설치할 수 있습니다.</about
     <tracker>https://github.com/hgkang17/Urban-QGIS-Toolkit/issues</tracker>
     <repository>https://github.com/hgkang17/Urban-QGIS-Toolkit</repository>
     <tags>urban planning,cadastral,korea,vworld,pnu,automation,wfs,symbology,도시계획,지적</tags>
-    <changelog>1.0.1 - 2026-09-11
+    <changelog>1.0.2 - 2026-09-11
+- QGIS 를 켤 때 새 버전이 있으면 상단 메시지바에 알림과 [업데이트] 버튼 표시
+.
+1.0.1 - 2026-09-11
 - 브이월드 검색 시 검색어를 입력해도 "검색어를 입력해 주세요"가 뜨던 문제 수정
 - 브이월드 로그인 개선: 비밀번호 사용기간(6개월) 초과 안내를 구분해 표시, 재로그인 실패 문제 수정
 - 면적계산이 실행되지 않던 문제 수정
