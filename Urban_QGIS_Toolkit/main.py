@@ -16,7 +16,7 @@ from qgis.PyQt.QtCore import (QVariant, pyqtSignal, QSettings, QTranslator,
 from qgis.PyQt.QtCore import QVariant, pyqtSignal, QSettings, QTranslator, QCoreApplication, Qt, QFileInfo, QThread, QTimer
 from qgis.PyQt.QtWidgets import QAction, QFileDialog, QMessageBox, QLineEdit, QToolButton
 
-from PyQt5.QtCore import QCoreApplication, QObject, pyqtSignal, QSize
+from qgis.PyQt.QtCore import QCoreApplication, QObject, pyqtSignal, QSize
 from qgis.core import *
 from .resources import *
 
@@ -98,14 +98,14 @@ class GuiDockWidget(QDockWidget):
             button.setIcon(icon)
             button.setIconSize(QSize(16, 16))
             button.setFixedSize(20, 20)
-            button.setCursor(Qt.PointingHandCursor)
+            button.setCursor(Qt.CursorShape.PointingHandCursor)
             button.setStyleSheet(action_button_style)
 
             button_layout = QtWidgets.QHBoxLayout(line_edit)
             button_layout.setContentsMargins(0, 0, 2, 0)
             button_layout.setSpacing(0)
             button_layout.addStretch(1)
-            button_layout.addWidget(button, 0, Qt.AlignVCenter)
+            button_layout.addWidget(button, 0, Qt.AlignmentFlag.AlignVCenter)
             line_edit.setTextMargins(0, 0, 24, 0)
             return button
 
@@ -115,7 +115,7 @@ class GuiDockWidget(QDockWidget):
         self.btn_select_layer_up.clicked.connect(lambda: move_selected_to_top(self.iface, self))
         self.btn_Vworld_satellite.clicked.connect(lambda: load_vworld_satellite(self))
 
-        self.undo_visibility_shortcut = QtWidgets.QShortcut(QtGui.QKeySequence(Qt.Key_Backspace), self.iface.mainWindow())
+        self.undo_visibility_shortcut = QtWidgets.QShortcut(QtGui.QKeySequence(Qt.Key.Key_Backspace), self.iface.mainWindow())
         self.undo_visibility_shortcut.activated.connect(lambda: restore_previous_visibility(self.iface, self))
 
         self.btn_Symbol_Color.clicked.connect(lambda: open_symbol_color_dialog(self.iface, self))
@@ -161,8 +161,8 @@ class GuiDockWidget(QDockWidget):
         self.progress_percent_label = QLabel(self.progress_row)
         self.progress_percent_label.setObjectName("progress_percent_overlay")
         self.progress_percent_label.setFixedWidth(35)
-        self.progress_percent_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.progress_percent_label.setAttribute(Qt.WA_TransparentForMouseEvents)
+        self.progress_percent_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.progress_percent_label.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
         self.progress_percent_label.setStyleSheet(
             'background: transparent; color: rgb(85, 93, 109); '
             'font-family: "Noto Sans KR"; font-size: 9pt; font-weight: 레귤러; '
@@ -180,11 +180,11 @@ class GuiDockWidget(QDockWidget):
         for status_label in (self.eum_kakao_status, self.Vworld_status):
             status_label.setFixedSize(190, 15)
             status_label.setSizePolicy(
-                QtWidgets.QSizePolicy.Fixed,
-                QtWidgets.QSizePolicy.Fixed
+                QtWidgets.QSizePolicy.Policy.Fixed,
+                QtWidgets.QSizePolicy.Policy.Fixed
             )
             status_label.setFont(status_font)
-            status_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+            status_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
 
         pin_icon_path = os.path.join(cmd_folder, 'icons', 'pin.svg')
 
@@ -240,7 +240,7 @@ class GuiDockWidget(QDockWidget):
         self._checkbox_label_targets = {}
         for label_name, checkbox in ((self.label_api, self.cb_save_api),(self.label_Temporary, self.cb_Temporary_api)):
             self._checkbox_label_targets[label_name] = checkbox
-            label_name.setCursor(Qt.PointingHandCursor)
+            label_name.setCursor(Qt.CursorShape.PointingHandCursor)
             label_name.installEventFilter(self)
 
         self.progressBar.valueChanged.connect(self._update_progress_percent)
@@ -268,50 +268,50 @@ class GuiDockWidget(QDockWidget):
 
     def eventFilter(self, watched, event):
             checkbox = getattr(self, "_checkbox_label_targets", {}).get(watched)
-            if (event.type() == QtCore.QEvent.MouseButtonRelease and event.button() == Qt.LeftButton):
+            if (event.type() == QtCore.QEvent.Type.MouseButtonRelease and event.button() == Qt.MouseButton.LeftButton):
                 checkbox.toggle()
                 return True
             return super().eventFilter(watched, event)
 
     def setup_tree_data(self):
         root = QStandardItem(QgsApplication.getThemeIcon("mActionSelectAll.svg"), "브이월드 2D데이터 API (불러온 시점 고정데이터)")
-        root.setData("vworld_2d", Qt.UserRole)
-        root.setFlags(root.flags() & ~Qt.ItemIsEditable)
+        root.setData("vworld_2d", Qt.ItemDataRole.UserRole)
+        root.setFlags(root.flags() & ~Qt.ItemFlag.ItemIsEditable)
         self.model.appendRow(root)
 
         middle_root = QStandardItem(QgsApplication.getThemeIcon("mActionAddBasicCircle.svg"), "도시관리계획도(2D API)")
-        middle_root.setData("UrbanManagementPlan_2d", Qt.UserRole)
-        middle_root.setFlags(middle_root.flags() & ~Qt.ItemIsEditable)
+        middle_root.setData("UrbanManagementPlan_2d", Qt.ItemDataRole.UserRole)
+        middle_root.setFlags(middle_root.flags() & ~Qt.ItemFlag.ItemIsEditable)
         root.appendRow(middle_root)
 
         for middle_name, API_2D in tree_structure.items():
             middle_root = QStandardItem(QgsApplication.getThemeIcon("mActionFileOpen.svg"), middle_name)
-            middle_root.setFlags(middle_root.flags() & ~Qt.ItemIsEditable)
+            middle_root.setFlags(middle_root.flags() & ~Qt.ItemFlag.ItemIsEditable)
             root.appendRow(middle_root)
 
             for API_2D_name in API_2D:
                 middle_child = QStandardItem(QgsApplication.getThemeIcon("mActionAddBasicCircle.svg"), API_2D_name)
-                middle_child.setFlags(middle_child.flags() & ~Qt.ItemIsEditable)
+                middle_child.setFlags(middle_child.flags() & ~Qt.ItemFlag.ItemIsEditable)
                 middle_root.appendRow(middle_child)
 
         root2 = QStandardItem(QgsApplication.getThemeIcon("mActionSelectAll.svg"), "브이월드 WFS API (화면 이동시 자동반영)")
-        root2.setData("vworld_wfs", Qt.UserRole)
-        root2.setFlags(root2.flags() & ~Qt.ItemIsEditable)
+        root2.setData("vworld_wfs", Qt.ItemDataRole.UserRole)
+        root2.setFlags(root2.flags() & ~Qt.ItemFlag.ItemIsEditable)
         self.model.appendRow(root2)
 
         middle_root = QStandardItem(QgsApplication.getThemeIcon("mActionAddBasicCircle.svg"),"도시관리계획도(WFS)",)
-        middle_root.setData("UrbanManagementPlan_wfs", Qt.UserRole)
-        middle_root.setFlags(middle_root.flags() & ~Qt.ItemIsEditable)
+        middle_root.setData("UrbanManagementPlan_wfs", Qt.ItemDataRole.UserRole)
+        middle_root.setFlags(middle_root.flags() & ~Qt.ItemFlag.ItemIsEditable)
         root2.appendRow(middle_root)
 
         for middle_name, API_wfs in wfs_tree_structure.items():
             middle_root = QStandardItem(QgsApplication.getThemeIcon("mActionFileOpen.svg"), middle_name)
-            middle_root.setFlags(middle_root.flags() & ~Qt.ItemIsEditable)
+            middle_root.setFlags(middle_root.flags() & ~Qt.ItemFlag.ItemIsEditable)
             root2.appendRow(middle_root)
 
             for API_wfs_name in API_wfs:
                 middle_child = QStandardItem(QgsApplication.getThemeIcon("mActionAddBasicCircle.svg"), API_wfs_name)
-                middle_child.setFlags(middle_child.flags() & ~Qt.ItemIsEditable)
+                middle_child.setFlags(middle_child.flags() & ~Qt.ItemFlag.ItemIsEditable)
                 middle_root.appendRow(middle_child)
 
     def _on_tree_toggle_all_clicked(self):
@@ -354,10 +354,10 @@ class GuiDockWidget(QDockWidget):
         top_ancestor = item
         while top_ancestor.parent() is not None:
             top_ancestor = top_ancestor.parent()
-        tree_type = top_ancestor.data(Qt.UserRole)
+        tree_type = top_ancestor.data(Qt.ItemDataRole.UserRole)
 
         if tree_type == "vworld_wfs":
-            if item.data(Qt.UserRole) == "UrbanManagementPlan_wfs":
+            if item.data(Qt.ItemDataRole.UserRole) == "UrbanManagementPlan_wfs":
                 show_all_Vworld_WFS_native(self.iface, self)
                 return
             if item.hasChildren():
@@ -384,7 +384,7 @@ class GuiDockWidget(QDockWidget):
                     group.addLayer(layer)
             return
 
-        is_urban_plan_2d = item.data(Qt.UserRole) == "UrbanManagementPlan_2d"
+        is_urban_plan_2d = item.data(Qt.ItemDataRole.UserRole) == "UrbanManagementPlan_2d"
         if is_urban_plan_2d:
 
             def get_or_create_group(parent, name):
@@ -507,7 +507,7 @@ class GuiDockWidget(QDockWidget):
         was_at_bottom = scrollbar.value() >= scrollbar.maximum() - 4
 
         cursor = self.log.textCursor()
-        cursor.movePosition(QtGui.QTextCursor.End)
+        cursor.movePosition(QtGui.QTextCursor.MoveOperation.End)
 
         block_format = QtGui.QTextBlockFormat()
         block_format.setLeftMargin(30)

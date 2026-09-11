@@ -30,22 +30,22 @@ class SimpleAddressClickTool(QgsMapToolEmitPoint):
 
     def _set_cross_cursor(self):
         pixmap = QPixmap(48, 48)
-        pixmap.fill(Qt.transparent)
+        pixmap.fill(Qt.GlobalColor.transparent)
         painter = QPainter(pixmap)
-        painter.setRenderHint(QPainter.Antialiasing, True)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing, True)
 
-        painter.setPen(QPen(Qt.white, 6, Qt.SolidLine, Qt.RoundCap))
+        painter.setPen(QPen(Qt.GlobalColor.white, 6, Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap))
         painter.drawLine(10, 10, 38, 38)
         painter.drawLine(10, 38, 38, 10)
 
-        painter.setPen(QPen(Qt.black, 3, Qt.SolidLine, Qt.RoundCap))
+        painter.setPen(QPen(Qt.GlobalColor.black, 3, Qt.PenStyle.SolidLine, Qt.PenCapStyle.RoundCap))
         painter.drawLine(10, 10, 38, 38)
         painter.drawLine(10, 38, 38, 10)
         painter.end()
         self.setCursor(QCursor(pixmap, 24, 24))
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key.Key_Escape:
             self.iface.actionPan().trigger()
             self.iface.mainWindow().statusBar().showMessage("주소 지점 선택이 취소되었습니다.", 3000)
             event.accept()
@@ -237,8 +237,8 @@ def _search_address_suggestions(raw_query, api_key):
 def install_address_autocomplete(line_edit, api_key_getter):
     completer_model = QStringListModel(line_edit)
     completer = QCompleter(completer_model, line_edit)
-    completer.setCaseSensitivity(Qt.CaseInsensitive)
-    completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)
+    completer.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+    completer.setCompletionMode(QCompleter.CompletionMode.UnfilteredPopupCompletion)
     completer.popup().setStyleSheet("""
         QListView {
             color: rgb(0, 0, 0);
@@ -368,7 +368,7 @@ class SimpleSearchDialog(QDialog):
         self.btn_pick_address.setIcon(QIcon(os.path.join(os.path.dirname(__file__), "icons", "pin.svg")))
         self.btn_pick_address.setToolTip("지도에서 지점을 선택해 주소 입력")
         self.btn_pick_address.setFixedSize(32, 32)
-        self.btn_pick_address.setCursor(Qt.PointingHandCursor)
+        self.btn_pick_address.setCursor(Qt.CursorShape.PointingHandCursor)
         self.btn_pick_address.clicked.connect(self._activate_address_picker)
         input_row.addWidget(self.btn_pick_address)
 

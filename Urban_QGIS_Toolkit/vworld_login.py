@@ -1,7 +1,7 @@
 import os
 import logging
 import asyncio
-from PyQt5 import QtCore, QtWidgets
+from qgis.PyQt import QtCore, QtWidgets
 
 try:
     import winreg

@@ -6,9 +6,9 @@ import json
 import random
 from qgis.core import *
 from qgis.gui import QgsRubberBand
-from PyQt5.QtGui import QColor
-from PyQt5 import QtGui
-from PyQt5.QtCore import QVariant
+from qgis.PyQt.QtGui import QColor
+from qgis.PyQt import QtGui
+from qgis.PyQt.QtCore import QVariant
 from .dict_DB import kcode_dict, STYLES_dict, STYLES_RANDOM, STYLES_codeX_dict, api_dict, tree_structure, kcode_dict_Reverse, api_field_cnd
 from .symbol_style_utils import build_symbol_from_style
 from qgis.core import (
@@ -16,8 +16,8 @@ from qgis.core import (
     QgsCategorizedSymbolRenderer, QgsRendererCategory, QgsSettings
 )
 from qgis.PyQt.QtWidgets import QMessageBox
-from PyQt5.QtGui import QColor, QFont
-from PyQt5.QtCore import Qt, QSizeF
+from qgis.PyQt.QtGui import QColor, QFont
+from qgis.PyQt.QtCore import Qt, QSizeF
 from qgis.core import (
     QgsPalLayerSettings, QgsTextFormat, QgsTextBufferSettings,
     QgsTextBackgroundSettings, QgsVectorLayerSimpleLabeling, QgsPalLayerSettings, QgsUnitTypes

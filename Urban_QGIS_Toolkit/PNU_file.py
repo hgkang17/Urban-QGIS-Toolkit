@@ -1,6 +1,6 @@
 from qgis.PyQt.QtWidgets import QMessageBox
 from qgis.core import QgsField, QgsExpression, QgsExpressionContext, QgsExpressionContextUtils
-from PyQt5.QtCore import QVariant, QCoreApplication
+from qgis.PyQt.QtCore import QVariant, QCoreApplication
 import sys
 from qgis.core import QgsMapLayer
 

@@ -1,6 +1,6 @@
 import os
 import asyncio
-from PyQt5 import QtWidgets
+from qgis.PyQt import QtWidgets
 from .vworld_login import (
     _chrome_launch_options,
     _ensure_playwright_event_pump,

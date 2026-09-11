@@ -37,7 +37,7 @@ class DragZoomTool(QgsMapTool):
         self._show_rect(rect)
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key.Key_Escape:
             self.iface.actionPan().trigger()
 
     def deactivate(self):

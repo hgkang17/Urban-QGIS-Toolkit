@@ -7,8 +7,8 @@ import urllib.request
 import random
 from qgis.core import *
 from qgis.gui import QgsRubberBand
-from PyQt5.QtGui import QColor
-from PyQt5 import QtGui
+from qgis.PyQt.QtGui import QColor
+from qgis.PyQt import QtGui
 from .dict_DB import (
     kcode_dict, STYLES_dict,
     STYLES_ZONE_URBAN_6, STYLES_ZONE_MANAGE_6, STYLES_ZONE_AGRI_6,

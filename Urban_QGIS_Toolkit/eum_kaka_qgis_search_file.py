@@ -3,8 +3,8 @@ import urllib.parse
 import json
 from qgis.core import *
 from qgis.gui import QgsRubberBand
-from PyQt5 import QtGui
-from PyQt5.QtCore import QTimer
+from qgis.PyQt import QtGui
+from qgis.PyQt.QtCore import QTimer
 
 
 def show_Shading_on_map(iface, dock_widget):

@@ -1,6 +1,6 @@
 from qgis.PyQt.QtWidgets import QMessageBox
 from qgis.core import QgsField, QgsExpression, QgsExpressionContext, QgsExpressionContextUtils
-from PyQt5.QtCore import QVariant, QCoreApplication
+from qgis.PyQt.QtCore import QVariant, QCoreApplication
 
 
 def area_cal(iface, dock_widget):

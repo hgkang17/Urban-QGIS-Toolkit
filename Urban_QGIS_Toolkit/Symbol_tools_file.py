@@ -34,7 +34,7 @@ def _apply_outline_only(symbol, color, width=None, line_style=None):
 
     if isinstance(symbol, QgsFillSymbol):
         if isinstance(layer, QgsSimpleFillSymbolLayer):
-            layer.setBrushStyle(Qt.NoBrush)
+            layer.setBrushStyle(Qt.BrushStyle.NoBrush)
             if color is not None:
                 layer.setStrokeColor(color)
             if width is not None:
@@ -43,7 +43,7 @@ def _apply_outline_only(symbol, color, width=None, line_style=None):
                 layer.setStrokeStyle(line_style)
         else:
             new_layer = QgsSimpleFillSymbolLayer()
-            new_layer.setBrushStyle(Qt.NoBrush)
+            new_layer.setBrushStyle(Qt.BrushStyle.NoBrush)
             if color is not None:
                 new_layer.setStrokeColor(color)
             if width is not None:
@@ -53,14 +53,14 @@ def _apply_outline_only(symbol, color, width=None, line_style=None):
             symbol.changeSymbolLayer(0, new_layer)
     elif isinstance(symbol, QgsMarkerSymbol):
         if isinstance(layer, QgsSimpleMarkerSymbolLayer):
-            layer.setBrushStyle(Qt.NoBrush)
+            layer.setBrushStyle(Qt.BrushStyle.NoBrush)
             if color is not None:
                 layer.setStrokeColor(color)
             if width is not None:
                 layer.setStrokeWidth(width)
         else:
             new_layer = QgsSimpleMarkerSymbolLayer()
-            new_layer.setBrushStyle(Qt.NoBrush)
+            new_layer.setBrushStyle(Qt.BrushStyle.NoBrush)
             if color is not None:
                 new_layer.setStrokeColor(color)
             if width is not None:
@@ -123,7 +123,7 @@ def _remove_outline_only(symbol):
     for index in range(symbol.symbolLayerCount()):
         symbol_layer = symbol.symbolLayer(index)
         if hasattr(symbol_layer, "setStrokeStyle"):
-            symbol_layer.setStrokeStyle(Qt.NoPen)
+            symbol_layer.setStrokeStyle(Qt.PenStyle.NoPen)
             changed = True
 
     return changed
@@ -264,13 +264,13 @@ def _restore_legend_selection(iface, selected_items):
             if target_index.isValid():
                 selection_model.select(
                     target_index,
-                    QItemSelectionModel.Select | QItemSelectionModel.Rows
+                    QItemSelectionModel.SelectionFlag.Select | QItemSelectionModel.SelectionFlag.Rows
                 )
                 last_index = target_index
             break
 
     if last_index is not None:
-        selection_model.setCurrentIndex(last_index, QItemSelectionModel.NoUpdate)
+        selection_model.setCurrentIndex(last_index, QItemSelectionModel.SelectionFlag.NoUpdate)
 
 
 def _get_legend_selection_items(legend_nodes):
@@ -311,7 +311,7 @@ def _reset_symbol_fill_only(symbol):
     for index in range(symbol.symbolLayerCount()):
         symbol_layer = symbol.symbolLayer(index)
         if isinstance(symbol_layer, (QgsSimpleFillSymbolLayer, QgsSimpleMarkerSymbolLayer)):
-            symbol_layer.setBrushStyle(Qt.SolidPattern)
+            symbol_layer.setBrushStyle(Qt.BrushStyle.SolidPattern)
             symbol_layer.setColor(random_color)
             changed = True
 
@@ -375,12 +375,12 @@ def _reset_symbol_outline_only(symbol):
     for index in range(symbol.symbolLayerCount()):
         symbol_layer = symbol.symbolLayer(index)
         if isinstance(symbol_layer, (QgsSimpleFillSymbolLayer, QgsSimpleMarkerSymbolLayer)):
-            symbol_layer.setStrokeStyle(Qt.SolidLine)
+            symbol_layer.setStrokeStyle(Qt.PenStyle.SolidLine)
             symbol_layer.setStrokeColor(random_color)
             symbol_layer.setStrokeWidth(0.26)
             changed = True
         elif isinstance(symbol_layer, QgsSimpleLineSymbolLayer):
-            symbol_layer.setPenStyle(Qt.SolidLine)
+            symbol_layer.setPenStyle(Qt.PenStyle.SolidLine)
             symbol_layer.setColor(random_color)
             symbol_layer.setWidth(0.26)
             changed = True
@@ -463,7 +463,7 @@ def set_red_dashdotdot_outline(iface, dock_widget):
         return
 
     red = QColor(255, 0, 0)
-    touched = _apply_outline_to_selection(iface, red, width=1.0, line_style=Qt.DashDotDotLine)
+    touched = _apply_outline_to_selection(iface, red, width=1.0, line_style=Qt.PenStyle.DashDotDotLine)
 
     if not touched:
         QMessageBox.warning(dock_widget, "경고", "벡터 레이어에만 적용할 수 있습니다.")
@@ -518,7 +518,7 @@ def _apply_palette_color_to_symbol(symbol, color, use_fill, use_outline, use_pat
             layer_name = symbol_layer.__class__.__name__.lower()
             is_pattern_layer = "pattern" in layer_name or "hatch" in layer_name or "svg" in layer_name
             if not is_pattern_layer and hasattr(symbol_layer, "setBrushStyle"):
-                symbol_layer.setBrushStyle(Qt.SolidPattern)
+                symbol_layer.setBrushStyle(Qt.BrushStyle.SolidPattern)
 
         if not use_outline:
             for symbol_layer, outline_color in saved_outline_colors:
@@ -607,8 +607,8 @@ class SymbolColorDialog(QColorDialog):
         self.selected_legend_nodes = list(selected_legend_nodes)
 
         self.setWindowTitle("심볼 색상 지정")
-        self.setOption(QColorDialog.DontUseNativeDialog, True)
-        self.setOption(QColorDialog.ShowAlphaChannel, True)
+        self.setOption(QColorDialog.ColorDialogOption.DontUseNativeDialog, True)
+        self.setOption(QColorDialog.ColorDialogOption.ShowAlphaChannel, True)
         self.setCurrentColor(QColor(255, 0, 0, 255))
         self.setFont(QFont("Noto Sans KR", 9))
         self.setStyleSheet("""

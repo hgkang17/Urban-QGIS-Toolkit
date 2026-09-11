@@ -1,6 +1,6 @@
 from qgis.PyQt.QtWidgets import QMessageBox
 from qgis.core import QgsMapLayer, QgsRenderContext, QgsLayerTreeGroup, QgsLayerTreeLayer
-from PyQt5.QtCore import QCoreApplication
+from qgis.PyQt.QtCore import QCoreApplication
 
 def change_line_width(iface, plugin_ui):
     try:

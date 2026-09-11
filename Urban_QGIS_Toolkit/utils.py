@@ -52,11 +52,11 @@ def check_playwright_installed(iface):
             "이 기능을 사용하려면 필수 패키지(Playwright)가 필요합니다.\n"
             "(chrome 브라우저 제어를 위한 라이브러리 입니다.)\n\n"
             "백그라운드 자동 설치를 진행하시겠습니까?",
-            QMessageBox.Ok | QMessageBox.Cancel,
-            QMessageBox.Ok
+            QMessageBox.StandardButton.Ok | QMessageBox.StandardButton.Cancel,
+            QMessageBox.StandardButton.Ok
         )
 
-        if reply == QMessageBox.Cancel:
+        if reply == QMessageBox.StandardButton.Cancel:
             print("사용자가 패키지 설치를 취소했습니다.")
             return False
 

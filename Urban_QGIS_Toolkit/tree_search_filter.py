@@ -25,7 +25,7 @@ class RecursiveFilterProxyModel(QSortFilterProxyModel):
         return self._has_matching_descendant(index)
 
     def _matches(self, index):
-        text = self.sourceModel().data(index, Qt.DisplayRole) or ""
+        text = self.sourceModel().data(index, Qt.ItemDataRole.DisplayRole) or ""
         return self._search_text in text.lower()
 
     def _ancestor_matches(self, index):

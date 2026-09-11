@@ -38,14 +38,14 @@ def export_canvas_to_jpg(iface, dock_widget):
     settings.setOutputDpi(dpi)
     settings.setDestinationCrs(canvas.mapSettings().destinationCrs())
 
-    image = QImage(output_size, QImage.Format_RGB32)
+    image = QImage(output_size, QImage.Format.Format_RGB32)
     image.setDotsPerMeterX(round(dpi * 39.3701))
     image.setDotsPerMeterY(round(dpi * 39.3701))
     image.fill(canvas.canvasColor())
 
     progress = QProgressDialog("이미지 추출중입니다...", None, 0, 0, dock_widget)
     progress.setWindowTitle("알림")
-    progress.setWindowModality(Qt.WindowModal)
+    progress.setWindowModality(Qt.WindowModality.WindowModal)
     progress.setMinimumDuration(0)
     progress.show()
     QApplication.processEvents()

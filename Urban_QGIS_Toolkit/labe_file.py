@@ -93,7 +93,7 @@ def label_buffer(iface, dock_widget):
         }
     """)
 
-    if field_dialog.exec_() != QDialog.Accepted:
+    if field_dialog.exec() != QDialog.DialogCode.Accepted:
         return
 
     field_name = field_dialog.textValue()
@@ -112,7 +112,7 @@ def label_buffer(iface, dock_widget):
     buffer_settings.setSize(1.0)
     buffer_settings.setColor(QColor(255, 255, 255))
     buffer_settings.setOpacity(1.0)
-    buffer_settings.setJoinStyle(Qt.RoundJoin)
+    buffer_settings.setJoinStyle(Qt.PenJoinStyle.RoundJoin)
     text_format.setBuffer(buffer_settings)
 
     label_settings = QgsPalLayerSettings()

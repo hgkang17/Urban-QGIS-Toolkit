@@ -2,13 +2,13 @@ import json
 import asyncio
 import urllib.request
 import urllib.parse
-from PyQt5 import QtWidgets, QtGui, QtCore
+from qgis.PyQt import QtWidgets, QtGui, QtCore
 from qgis.gui import *
 from qgis.core import (
     QgsCoordinateTransform, QgsProject, QgsCoordinateReferenceSystem,
     Qgis, QgsVectorLayer, QgsWkbTypes
 )
-from PyQt5.QtCore import QTimer
+from qgis.PyQt.QtCore import QTimer
 from .vworld_login import (
     _chrome_launch_options,
     _ensure_playwright_event_pump,
@@ -32,14 +32,14 @@ class AddressClickTool(QgsMapToolEmitPoint):
 
     def setCustomXCursor(self):
         pixmap = QtGui.QPixmap(48, 48)
-        pixmap.fill(QtCore.Qt.transparent)
+        pixmap.fill(QtCore.Qt.GlobalColor.transparent)
         painter = QtGui.QPainter(pixmap)
-        painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
-        white_pen = QtGui.QPen(QtCore.Qt.white, 6, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap)
+        painter.setRenderHint(QtGui.QPainter.RenderHint.Antialiasing, True)
+        white_pen = QtGui.QPen(QtCore.Qt.GlobalColor.white, 6, QtCore.Qt.PenStyle.SolidLine, QtCore.Qt.PenCapStyle.RoundCap)
         painter.setPen(white_pen)
         painter.drawLine(10, 10, 38, 38)
         painter.drawLine(10, 38, 38, 10)
-        black_pen = QtGui.QPen(QtCore.Qt.black, 3, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap)
+        black_pen = QtGui.QPen(QtCore.Qt.GlobalColor.black, 3, QtCore.Qt.PenStyle.SolidLine, QtCore.Qt.PenCapStyle.RoundCap)
         painter.setPen(black_pen)
         painter.drawLine(10, 10, 38, 38)
         painter.drawLine(10, 38, 38, 10)
@@ -47,7 +47,7 @@ class AddressClickTool(QgsMapToolEmitPoint):
         self.setCursor(QtGui.QCursor(pixmap, 24, 24))
 
     def keyPressEvent(self, event):
-        if event.key() == QtCore.Qt.Key_Escape:
+        if event.key() == QtCore.Qt.Key.Key_Escape:
 
 
             self.iface.actionPan().trigger()
@@ -71,12 +71,12 @@ class AddressClickTool(QgsMapToolEmitPoint):
     def restore_qgis_focus(self):
         qgis_window = self.iface.mainWindow()
         qgis_window.setWindowState(
-            (qgis_window.windowState() & ~QtCore.Qt.WindowMinimized)
-            | QtCore.Qt.WindowActive
+            (qgis_window.windowState() & ~QtCore.Qt.WindowState.WindowMinimized)
+            | QtCore.Qt.WindowState.WindowActive
         )
         qgis_window.raise_()
         qgis_window.activateWindow()
-        self.canvas.setFocus(QtCore.Qt.OtherFocusReason)
+        self.canvas.setFocus(QtCore.Qt.FocusReason.OtherFocusReason)
 
 
     def process_click_to_address(self, point, button):
