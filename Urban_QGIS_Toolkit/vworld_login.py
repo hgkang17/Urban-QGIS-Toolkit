@@ -169,19 +169,37 @@ async def get_or_create_service_browser(
             setattr(dock_widget, context_attr, None)
 
     profile_path = get_service_chrome_profile_directory(service_name)
-    context = await dock_widget._playwright_instance.chromium.launch_persistent_context(
-        user_data_dir=profile_path,
-        no_viewport=True,
-        accept_downloads=accept_downloads,
-        **_chrome_launch_options(
-            headless=False,
-            downloads_path=downloads_path,
-            args=chrome_args,
-        )
+    launch_options = _chrome_launch_options(
+        headless=False,
+        downloads_path=downloads_path,
+        args=chrome_args,
     )
+    browser = None
+    try:
+        context = await dock_widget._playwright_instance.chromium.launch_persistent_context(
+            user_data_dir=profile_path,
+            no_viewport=True,
+            accept_downloads=accept_downloads,
+            **launch_options,
+        )
+        browser = context.browser
+    except Exception as persistent_error:
+        persistent_summary = str(persistent_error).splitlines()[0]
+        print(
+            "[WARN] Chrome 영구 프로필을 열지 못해 임시 자동화 창으로 전환합니다: "
+            f"{persistent_summary}"
+        )
+        browser = await dock_widget._playwright_instance.chromium.launch(
+            **launch_options,
+        )
+        context = await browser.new_context(
+            no_viewport=True,
+            accept_downloads=accept_downloads,
+        )
+
     page = context.pages[0] if context.pages else await context.new_page()
     setattr(dock_widget, context_attr, context)
-    setattr(dock_widget, browser_attr, context.browser)
+    setattr(dock_widget, browser_attr, browser)
     setattr(dock_widget, page_attr, page)
     return context, page, False
 
@@ -237,13 +255,23 @@ def vworld_backend_login(dock_widget):
             if not hasattr(dock_widget, '_playwright_instance') or not dock_widget._playwright_instance:
                 dock_widget._playwright_instance = await async_playwright().start()
 
-            old_context = getattr(dock_widget, "vworld_context", None)
-            if old_context is not None and old_context is not getattr(dock_widget, "vworld_visible_context", None):
+            old_login_browser = getattr(dock_widget, "vworld_login_browser", None)
+            if old_login_browser is not None:
                 try:
-                    await dock_widget.vworld_browser.close()
+                    await old_login_browser.close()
                 except Exception:
                     pass
+            else:
+                old_context = getattr(dock_widget, "vworld_context", None)
+                if old_context is not None and old_context is not getattr(dock_widget, "vworld_visible_context", None):
+                    try:
+                        await dock_widget.vworld_browser.close()
+                    except Exception:
+                        pass
             dock_widget.vworld_context = None
+            dock_widget.vworld_login_browser = None
+            dock_widget.vworld_login_context = None
+            dock_widget.vworld_login_page = None
 
             browser = await dock_widget._playwright_instance.chromium.launch(
                 **_chrome_launch_options(
@@ -252,7 +280,8 @@ def vworld_backend_login(dock_widget):
                 )
             )
             context = await browser.new_context(
-                viewport={'width': 1920, 'height': 1080}
+                viewport={'width': 1920, 'height': 1080},
+                accept_downloads=True,
             )
             page = await context.new_page()
 
@@ -300,6 +329,9 @@ def vworld_backend_login(dock_widget):
                 dock_widget.vworld_browser = browser
                 dock_widget.vworld_context = context
                 dock_widget.vworld_page = page
+                dock_widget.vworld_login_browser = browser
+                dock_widget.vworld_login_context = context
+                dock_widget.vworld_login_page = page
 
                 if hasattr(dock_widget, 'Vworld_status'):
                     dock_widget.Vworld_status.setText("로그인 완료")
@@ -345,13 +377,18 @@ def vworld_backend_login(dock_widget):
         print(f"[ERROR] 루프 예외: {e}")
 
 
-def vworld_backend_search(dock_widget):
+def vworld_backend_search(
+    dock_widget,
+    search_query_override=None,
+    after_search=None,
+    download_directory_override=None,
+):
     if not hasattr(dock_widget, 'vworld_context') or not dock_widget.vworld_context:
         QtWidgets.QMessageBox.warning(dock_widget, "경고", "먼저 로그인을 진행해 주세요.")
         return
 
-    search_query = ""
-    if hasattr(dock_widget, 'input_search_vworld'):
+    search_query = (search_query_override or "").strip()
+    if not search_query and hasattr(dock_widget, 'input_search_vworld'):
         search_query = dock_widget.input_search_vworld.text().strip()
 
     if not search_query:
@@ -367,7 +404,12 @@ def vworld_backend_search(dock_widget):
         try:
             cookies = await dock_widget.vworld_context.cookies()
 
-            download_path = _get_download_directory()
+            download_path = (
+                os.path.abspath(download_directory_override)
+                if download_directory_override
+                else _get_download_directory()
+            )
+            os.makedirs(download_path, exist_ok=True)
             profile_path = _get_vworld_chrome_profile_directory()
             target_x, target_y, target_w, target_h, has_other_monitor = get_opposite_monitor_geometry(dock_widget.iface)
             chrome_args = [
@@ -377,12 +419,6 @@ def vworld_backend_search(dock_widget):
             if has_other_monitor:
                 chrome_args.append("--start-maximized")
 
-            visible_context = getattr(dock_widget, "vworld_visible_context", None)
-            if dock_widget.vworld_context is not visible_context:
-                try:
-                    await dock_widget.vworld_browser.close()
-                except Exception:
-                    pass
 
             new_context, page, _ = await get_or_create_service_browser(
                 dock_widget,
@@ -437,7 +473,8 @@ def vworld_backend_search(dock_widget):
             except Exception as cdp_error:
                 print(f"[WARN] Chrome 기본 다운로드 설정 실패: {cdp_error}")
 
-            page.on("download", save_download_permanently)
+            if after_search is None:
+                page.on("download", save_download_permanently)
 
             dock_widget.vworld_browser = new_context.browser
             dock_widget.vworld_context = new_context
@@ -459,11 +496,22 @@ def vworld_backend_search(dock_widget):
                 dock_widget.Vworld_status.setText("검색 완료 · 다운로드 대기 중")
                 dock_widget.Vworld_status.setStyleSheet("color: blue; font-weight: bold;")
 
+            if after_search is not None:
+                await after_search(new_context, page)
+
         except Exception as err:
             print(f"[ERROR] 검색 처리 중 실패: {err}")
             if hasattr(dock_widget, 'Vworld_status'):
                 dock_widget.Vworld_status.setText("검색 실패")
                 dock_widget.Vworld_status.setStyleSheet("color: red;")
+            if after_search is not None:
+                status_label = getattr(dock_widget, "elevation_status", None)
+                if status_label is not None:
+                    status_label.setText(f"실패: {err}")
+                    status_label.setStyleSheet("color: rgb(180, 45, 45);")
+                run_button = getattr(dock_widget, "elevation_run_button", None)
+                if run_button is not None:
+                    run_button.setEnabled(True)
 
     try:
         loop = asyncio.get_event_loop()
@@ -474,3 +522,364 @@ def vworld_backend_search(dock_widget):
             _ensure_playwright_event_pump(dock_widget, loop)
     except Exception as e:
         print(f"[ERROR] 루프 예외: {e}")
+
+
+def vworld_download_named_file(
+    dock_widget,
+    filename,
+    output_directory,
+    completed_callback=None,
+):
+    if not getattr(dock_widget, "vworld_context", None):
+        QtWidgets.QMessageBox.warning(
+            dock_widget,
+            "브이월드 로그인 필요",
+            "먼저 VWorld API 호출 탭에서 브이월드 로그인을 진행해 주세요.",
+        )
+        return False
+
+    filename = os.path.basename(str(filename).strip())
+    if not filename:
+        QtWidgets.QMessageBox.warning(dock_widget, "입력 확인", "다운로드 파일명이 비어 있습니다.")
+        return False
+
+    output_directory = os.path.abspath(output_directory)
+    os.makedirs(output_directory, exist_ok=True)
+
+    async def _download_in_background():
+        try:
+            context = getattr(dock_widget, "vworld_login_context", None)
+            page = getattr(dock_widget, "vworld_login_page", None)
+
+            if context is not None:
+                try:
+                    await context.cookies()
+                except Exception:
+                    context = None
+                    page = None
+
+            if context is None:
+                source_context = getattr(dock_widget, "vworld_context", None)
+                if source_context is None:
+                    raise RuntimeError("브이월드 로그인이 필요합니다.")
+
+                storage_state = await source_context.storage_state()
+                browser = await dock_widget._playwright_instance.chromium.launch(
+                    **_chrome_launch_options(headless=True, args=[])
+                )
+                context = await browser.new_context(
+                    storage_state=storage_state,
+                    viewport={'width': 1920, 'height': 1080},
+                    accept_downloads=True,
+                )
+                page = await context.new_page()
+                dock_widget.vworld_login_browser = browser
+                dock_widget.vworld_login_context = context
+                dock_widget.vworld_login_page = page
+            elif page is None or page.is_closed():
+                page = await context.new_page()
+                dock_widget.vworld_login_page = page
+
+            try:
+                cdp_session = await context.new_cdp_session(page)
+                await cdp_session.send(
+                    "Browser.setDownloadBehavior",
+                    {
+                        "behavior": "allow",
+                        "downloadPath": output_directory,
+                        "eventsEnabled": True,
+                    },
+                )
+            except Exception as cdp_error:
+                print(f"[WARN] 백그라운드 Chrome 다운로드 경로 설정 실패: {cdp_error}")
+
+            if hasattr(dock_widget, "Vworld_status"):
+                dock_widget.Vworld_status.setText("백그라운드에서 표고 자료 찾는 중")
+                dock_widget.Vworld_status.setStyleSheet("color: black;")
+
+            base_url = (
+                "https://www.vworld.kr/dtmk/dtmk_ntads_s002.do"
+                "?datIde=30205&dsId=30205&datPageSize=100"
+                "&searchKeyword=%EC%88%98%EC%B9%98%EC%A7%80%ED%98%95%EB%8F%84"
+                "&svcCde=MK&datPageIndex={}"
+            )
+
+            download_button = None
+            target_item = None
+            for page_number in range(1, 5):
+                await page.goto(
+                    base_url.format(page_number),
+                    wait_until="domcontentloaded",
+                )
+                await page.wait_for_selector(
+                    "article article ul > li",
+                    state="attached",
+                    timeout=15000,
+                )
+                item = page.locator("article article ul > li").filter(
+                    has_text=filename
+                ).first
+                if await item.count():
+                    target_item = item
+                    download_button = item.get_by_role(
+                        "button", name="다운로드", exact=True
+                    )
+                    break
+
+            if target_item is None or download_button is None:
+                raise RuntimeError(f"VWorld 파일 목록에서 찾지 못했습니다: {filename}")
+
+            onclick_text = await download_button.get_attribute("onclick") or ""
+            size_match = re.search(r"download\([^,]+,[^,]+,\s*['\"]?(\d+)", onclick_text)
+            file_size_kb = int(size_match.group(1)) if size_match else 0
+
+            files_before = {}
+            for existing_name in os.listdir(output_directory):
+                existing_path = os.path.join(output_directory, existing_name)
+                if os.path.isfile(existing_path):
+                    stat = os.stat(existing_path)
+                    files_before[existing_name] = (stat.st_mtime_ns, stat.st_size)
+            target_path = _unique_download_path(output_directory, filename)
+
+            async with page.expect_download(timeout=120000) as download_info:
+                if file_size_kb > 512000:
+                    checkbox = target_item.locator("input[name='chkDs']")
+                    await checkbox.check(force=True)
+                    await page.get_by_role(
+                        "button", name="선택다운로드", exact=True
+                    ).click()
+                else:
+                    await download_button.click()
+
+            download = await download_info.value
+            download_error = await download.failure()
+            if download_error:
+                raise RuntimeError(download_error)
+
+            native_candidates = []
+            for current_name in os.listdir(output_directory):
+                current_path = os.path.join(output_directory, current_name)
+                if not os.path.isfile(current_path):
+                    continue
+                stat = os.stat(current_path)
+                current_signature = (stat.st_mtime_ns, stat.st_size)
+                if files_before.get(current_name) != current_signature:
+                    native_candidates.append((stat.st_mtime_ns, current_path))
+
+            if native_candidates:
+                _, native_path = max(native_candidates)
+                if os.path.normcase(native_path) != os.path.normcase(target_path):
+                    os.replace(native_path, target_path)
+            else:
+                await download.save_as(target_path)
+
+            print(f"[OK] VWorld 자동 다운로드 완료: {target_path}")
+            if hasattr(dock_widget, "Vworld_status"):
+                dock_widget.Vworld_status.setText("표고 자료 다운로드 완료")
+                dock_widget.Vworld_status.setStyleSheet(
+                    "color: blue; font-weight: bold;"
+                )
+            if completed_callback is not None:
+                completed_callback(target_path)
+
+        except Exception as error:
+            print(f"[ERROR] VWorld 지정 파일 다운로드 실패: {error}")
+            if hasattr(dock_widget, "Vworld_status"):
+                dock_widget.Vworld_status.setText("표고 자료 다운로드 실패")
+                dock_widget.Vworld_status.setStyleSheet(
+                    "color: red; font-weight: bold;"
+                )
+            status_label = getattr(dock_widget, "elevation_status", None)
+            if status_label is not None:
+                status_label.setText(f"실패: {error}")
+                status_label.setStyleSheet("color: rgb(180, 45, 45);")
+            run_button = getattr(dock_widget, "elevation_run_button", None)
+            if run_button is not None:
+                run_button.setEnabled(True)
+
+    try:
+        loop = asyncio.get_event_loop()
+        loop.create_task(_download_in_background())
+        if not loop.is_running():
+            _ensure_playwright_event_pump(dock_widget, loop)
+    except Exception as error:
+        print(f"[ERROR] 백그라운드 다운로드 루프 예외: {error}")
+        status_label = getattr(dock_widget, "elevation_status", None)
+        if status_label is not None:
+            status_label.setText(f"실패: {error}")
+            status_label.setStyleSheet("color: rgb(180, 45, 45);")
+        run_button = getattr(dock_widget, "elevation_run_button", None)
+        if run_button is not None:
+            run_button.setEnabled(True)
+    return True
+
+
+def vworld_download_matching_file(
+    dock_widget,
+    dataset_id,
+    filename_regex,
+    output_directory,
+    save_name_builder=None,
+    result_callback=None,
+    max_pages=5,
+    skip_existing=True,
+    check_only=False,
+):
+    def report(**result):
+        if result_callback is not None:
+            result_callback(result)
+
+    if not getattr(dock_widget, "vworld_context", None):
+        report(status="failed", error="브이월드 로그인이 필요합니다.")
+        return False
+
+    pattern = re.compile(filename_regex)
+    output_directory = os.path.abspath(output_directory)
+    if not check_only:
+        os.makedirs(output_directory, exist_ok=True)
+    detail_url = (
+        "https://www.vworld.kr/dtmk/dtmk_ntads_s002.do"
+        f"?datIde={dataset_id}&dsId={dataset_id}&datPageSize=100"
+        "&svcCde=MK&datPageIndex={}"
+    )
+
+    async def _download_matching():
+        try:
+            context = getattr(dock_widget, "vworld_login_context", None)
+            page = getattr(dock_widget, "vworld_login_page", None)
+            if context is not None:
+                try:
+                    await context.cookies()
+                except Exception:
+                    context = None
+                    page = None
+            if context is None:
+                source_context = getattr(dock_widget, "vworld_context", None)
+                if source_context is None:
+                    raise RuntimeError("브이월드 로그인이 필요합니다.")
+                storage_state = await source_context.storage_state()
+                browser = await dock_widget._playwright_instance.chromium.launch(
+                    **_chrome_launch_options(headless=True, args=[])
+                )
+                context = await browser.new_context(
+                    storage_state=storage_state,
+                    viewport={'width': 1920, 'height': 1080},
+                    accept_downloads=True,
+                )
+                page = await context.new_page()
+                dock_widget.vworld_login_browser = browser
+                dock_widget.vworld_login_context = context
+                dock_widget.vworld_login_page = page
+            elif page is None or page.is_closed():
+                page = await context.new_page()
+                dock_widget.vworld_login_page = page
+
+            try:
+                cdp_session = await context.new_cdp_session(page)
+                await cdp_session.send(
+                    "Browser.setDownloadBehavior",
+                    {"behavior": "allow", "downloadPath": output_directory, "eventsEnabled": True},
+                )
+            except Exception as cdp_error:
+                print(f"[WARN] 백그라운드 Chrome 다운로드 경로 설정 실패: {cdp_error}")
+
+            candidates = []
+            for page_number in range(1, max_pages + 1):
+                await page.goto(detail_url.format(page_number), wait_until="domcontentloaded")
+                try:
+                    await page.wait_for_selector(
+                        "article article ul > li", state="attached", timeout=15000
+                    )
+                except Exception:
+                    break
+                texts = await page.locator("article article ul > li").evaluate_all(
+                    "els => els.map(e => e.innerText)"
+                )
+                file_rows = 0
+                for text in texts:
+                    name_match = re.search(r"([0-9A-Za-z_가-힣().\-]+\.zip)", text)
+                    if not name_match:
+                        continue
+                    file_rows += 1
+                    name = name_match.group(1)
+                    if not pattern.fullmatch(name):
+                        continue
+                    date_match = re.search(r"기준일\s*(\d{4}-\d{2}(?:-\d{2})?)", text)
+                    base_date = date_match.group(1) if date_match else ""
+                    candidates.append((base_date, name, page_number))
+                if file_rows < 100:
+                    break
+
+            if not candidates:
+                report(status="not_found")
+                return
+
+            base_date, filename, page_number = max(candidates)
+            if check_only:
+                report(status="available", filename=filename, base_date=base_date)
+                return
+            save_name = save_name_builder(filename, base_date) if save_name_builder else filename
+            target_path = os.path.join(output_directory, save_name)
+            if skip_existing and os.path.isfile(target_path):
+                report(status="skipped", path=target_path, filename=filename, base_date=base_date)
+                return
+
+            await page.goto(detail_url.format(page_number), wait_until="domcontentloaded")
+            await page.wait_for_selector("article article ul > li", state="attached", timeout=15000)
+            target_item = page.locator("article article ul > li").filter(has_text=filename).first
+            if not await target_item.count():
+                raise RuntimeError(f"다운로드 직전에 목록에서 파일이 사라졌습니다: {filename}")
+            download_button = target_item.get_by_role("button", name="다운로드", exact=True)
+            onclick_text = await download_button.get_attribute("onclick") or ""
+            size_match = re.search(r"download\([^,]+,[^,]+,\s*['\"]?(\d+)", onclick_text)
+            file_size_kb = int(size_match.group(1)) if size_match else 0
+
+            files_before = {}
+            for existing_name in os.listdir(output_directory):
+                existing_path = os.path.join(output_directory, existing_name)
+                if os.path.isfile(existing_path):
+                    stat = os.stat(existing_path)
+                    files_before[existing_name] = (stat.st_mtime_ns, stat.st_size)
+
+            async with page.expect_download(timeout=300000) as download_info:
+                if file_size_kb > 512000:
+                    await target_item.locator("input[name='chkDs']").check(force=True)
+                    await page.get_by_role("button", name="선택다운로드", exact=True).click()
+                else:
+                    await download_button.click()
+            download = await download_info.value
+            download_error = await download.failure()
+            if download_error:
+                raise RuntimeError(download_error)
+
+            native_candidates = []
+            for current_name in os.listdir(output_directory):
+                current_path = os.path.join(output_directory, current_name)
+                if not os.path.isfile(current_path):
+                    continue
+                stat = os.stat(current_path)
+                if files_before.get(current_name) != (stat.st_mtime_ns, stat.st_size):
+                    native_candidates.append((stat.st_mtime_ns, current_path))
+            if native_candidates:
+                _, native_path = max(native_candidates)
+                if os.path.normcase(native_path) != os.path.normcase(target_path):
+                    os.replace(native_path, target_path)
+            else:
+                await download.save_as(target_path)
+
+            print(f"[OK] VWorld 다운로드 완료: {target_path}")
+            report(status="downloaded", path=target_path, filename=filename, base_date=base_date)
+        except Exception as error:
+            print(f"[ERROR] VWorld 자료 다운로드 실패({dataset_id}): {error}")
+            report(status="failed", error=str(error))
+
+    try:
+        loop = asyncio.get_event_loop()
+        loop.create_task(_download_matching())
+        if not loop.is_running():
+            _ensure_playwright_event_pump(dock_widget, loop)
+    except Exception as error:
+        print(f"[ERROR] 백그라운드 다운로드 루프 예외: {error}")
+        report(status="failed", error=str(error))
+        return False
+    return True

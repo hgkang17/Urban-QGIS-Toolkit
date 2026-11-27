@@ -50,6 +50,8 @@ from .Simple_search_file import (
 from .labe_file import label_buffer
 from .update_check import check_for_update
 from .tree_search_filter import RecursiveFilterProxyModel
+from .jibun_export_file import setup_spatial_tools_tab
+from .continuous_theme_file import setup_continuous_theme_tab
 
 
 cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
@@ -85,7 +87,15 @@ class GuiDockWidget(QDockWidget):
         ui_file_path = os.path.join(cmd_folder, 'khgv3.ui')
         uic.loadUi(ui_file_path, self)
 
+        self.spatial_tools_controller = setup_spatial_tools_tab(
+            self.iface, self, cmd_folder
+        )
+        self.continuous_theme_controller = setup_continuous_theme_tab(self.iface, self)
+
         self.vworld_browser = None
+        self.vworld_login_browser = None
+        self.vworld_login_context = None
+        self.vworld_login_page = None
 
         search_icon_path = os.path.join(cmd_folder, 'icons', 'search.svg')
         search_icon = QIcon(search_icon_path)
@@ -134,6 +144,15 @@ class GuiDockWidget(QDockWidget):
         self.input_line_width.returnPressed.connect(lambda: self.btn_line.click())
         self.input_line_width_btn = make_line_edit_button(self.input_line_width,QgsApplication.getThemeIcon('mIconSuccess.svg'))
         self.input_line_width_btn.clicked.connect(lambda: self.btn_line.click())
+
+        self.btn_line.hide()
+        self.input_line_width.setPlaceholderText("두께")
+        self.input_line_width.setToolTip(
+            "선 두께를 입력한 뒤 Enter 또는 오른쪽 확인 아이콘을 누르세요."
+        )
+        self.input_line_width.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.input_line_width.setMinimumWidth(54)
+        self.input_line_width.setMaximumWidth(72)
 
         self.btn_MNUM_SymBol.clicked.connect(lambda: mnum_symbol(self.iface, self))
         self.btn_area_cal.clicked.connect(lambda: area_cal(self.iface, self))
@@ -426,8 +445,6 @@ class GuiDockWidget(QDockWidget):
                         group = parent.insertGroup(0, name)
                 return group
 
-            group_top = get_or_create_group(root, "도시관리계획도(API)")
-
             standalone_categories = ("토지이용", "산업단지", "기타")
 
             target_group_name = item.parent().text() if item.parent() else None
@@ -437,7 +454,15 @@ class GuiDockWidget(QDockWidget):
                if target_group_name :
                     if target_group_name in standalone_categories:
                         grou_name = get_or_create_group(root, target_group_name)
+                        old_empty_group = root.findGroup("도시관리계획도(API)")
+                        if (
+                            old_empty_group
+                            and old_empty_group.parent() is root
+                            and not old_empty_group.children()
+                        ):
+                            root.removeChildNode(old_empty_group)
                     else:
+                        group_top = get_or_create_group(root, "도시관리계획도(API)")
                         grou_name = get_or_create_group(group_top, target_group_name)
                     grou_name.addLayer(layer)
 

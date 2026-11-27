@@ -81,17 +81,23 @@ QTabBar {
 QTabBar::tab {
     background: transparent;
     color: #555;
-    padding: 10px 0px;
-    width: 190px;
+    padding: 4px 7px;
     border: 3px solid transparent;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
 
+/* 상위 탭(이 탭 위젯 바로 아래 탭바)만 두 줄 높이로 고정합니다.
+   Qt는 탭 높이를 글자 한 줄 기준으로 계산해 줄바꿈한 두 번째 줄이 잘리기 때문입니다.
+   공간 도구 안의 하위 탭(내보내기·지목별·소유자별)은 한 줄이라 적용하지 않습니다. */
+QTabWidget#tabWidget &gt; QTabBar::tab {
+    height: 34px;
+}
+
 QTabBar::tab:selected {
     background-color: rgb(42,120,214);
     color: rgb(255, 255, 255);
-    border: 5px solid rgb(255, 255, 255);
+    border: 3px solid rgb(255, 255, 255);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }</string>
@@ -128,7 +134,8 @@ QTabBar::tab:selected {
             <string notr="true">  background-color: rgb(255, 255, 255); </string>
            </property>
            <attribute name="title">
-            <string>유틸리티</string>
+            <string>유틸
+리티</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout">
             <property name="leftMargin">
@@ -2231,8 +2238,2425 @@ QPushButton:pressed {
               </layout>
              </widget>
             </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_2">
+           <property name="styleSheet">
+            <string notr="true">  background-color: rgb(255, 255, 255); </string>
+           </property>
+           <attribute name="title">
+            <string>Vworld
+API</string>
+           </attribute>
+           <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="cb_Temporary_api">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>18</width>
+                <height>21</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Segoe UI</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="toolTipDuration">
+               <number>-1</number>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QCheckBox::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator:hover {
+    border: 1px solid rgb(109, 167, 242);
+}
+
+QCheckBox::indicator:checked {
+    background-color:  rgb(42,120,214);
+    border: 1px solid  rgb(42,120,214);
+}
+
+</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>15</width>
+                <height>15</height>
+               </size>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <property name="autoRepeat">
+               <bool>false</bool>
+              </property>
+              <property name="autoRepeatDelay">
+               <number>300</number>
+              </property>
+              <property name="autoRepeatInterval">
+               <number>100</number>
+              </property>
+              <property name="tristate">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" colspan="3">
+             <widget class="QTreeView" name="treeView">
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0" colspan="2">
+             <widget class="QLineEdit" name="input_tree_search">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+              </property>
+              <property name="placeholderText">
+               <string>레이어 검색 (예: 용도지역, 시군구...)</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QPushButton" name="btn_tree_toggle_all">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>60</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">
+    color: rgb(85, 93, 109);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 200);
+    border-radius: 6px;</string>
+              </property>
+              <property name="text">
+               <string>접기</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="label_Temporary">
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(85, 93, 109);</string>
+              </property>
+              <property name="text">
+               <string>파일 저장 (기본값 : 임시레이어, 체크 시 현재화면 SHP저장)</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0" colspan="3">
+             <widget class="QLabel" name="label_19">
+              <property name="font">
+               <font>
+                <family>Noto Sans KR</family>
+                <pointsize>9</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(85, 93, 109);</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;▶ 2D데이터 : 브이월드 자체 방식 데이터 &lt;/span&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; ▶ WFS : 국제 표준 기준 방식 데이터&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;.00&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;둘다 같은 자료입니다.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_spatial_tools">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">  background-color: rgb(255, 255, 255); </string>
+           </property>
+           <attribute name="title">
+            <string>지적도
+도구</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_spatial_tools">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QScrollArea" name="scroll_spatial_tools">
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scroll_spatial_tools_contents">
+               <property name="styleSheet">
+                <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-top: 8px;
+    font-weight: 600;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 4px;
+    color: rgb(45, 52, 66);
+}
+QPushButton[k_role="primary"] {
+    color: rgb(255, 255, 255);
+    background-color: rgb(42, 120, 214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 7px 12px;
+}
+QPushButton[k_role="primary"]:hover { background-color: rgb(77, 143, 226); }
+QPushButton[k_role="primary"]:pressed { background-color: rgb(32, 93, 169); }
+QPushButton[k_role="primary"]:disabled { background-color: rgb(178, 187, 199); }
+QPushButton[k_role="secondary"] {
+    color: rgb(42, 120, 214);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(42, 120, 214);
+    border-radius: 10px;
+    padding: 7px 12px;
+}
+QPushButton[k_role="secondary"]:hover { background-color: rgb(234, 243, 255); }
+QPushButton[k_role="secondary"]:pressed { background-color: rgb(214, 231, 252); }
+QPushButton[k_role="secondary"]:disabled {
+    color: rgb(145, 151, 163);
+    border-color: rgb(178, 187, 199);
+}
+QToolButton#btn_jibun_advanced { border: none; color: rgb(42, 120, 214); padding: 3px; }
+QLabel[k_role="hint"] { color: rgb(85, 93, 109); }
+QComboBox QAbstractItemView {
+    background-color: rgb(255, 255, 255);
+    color: rgb(45, 52, 66);
+    selection-background-color: rgb(214, 226, 242);
+    selection-color: rgb(45, 52, 66);
+}</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_spatial_contents">
+                <property name="spacing">
+                 <number>7</number>
+                </property>
+                <property name="leftMargin">
+                 <number>6</number>
+                </property>
+                <property name="topMargin">
+                 <number>3</number>
+                </property>
+                <property name="rightMargin">
+                 <number>6</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>6</number>
+                </property>
+                <item>
+                 <widget class="QGroupBox" name="group_jibun_export">
+                  <property name="title">
+                   <string>지적도 도구</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_jibun_group">
+                   <property name="spacing">
+                    <number>7</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>10</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>14</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>10</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>10</number>
+                   </property>
+                   <item>
+                    <widget class="QPushButton" name="btn_jibun_load_cadastral">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="toolTip">
+                      <string>Vworld API 호출 탭의 2D데이터 '연속지적도'와 같습니다. 현재 지도 화면 범위만 불러오고, 불러온 레이어를 아래 지적도 레이어로 바로 선택합니다.</string>
+                     </property>
+                     <property name="text">
+                      <string>VWorld 연속지적도 불러오기 (현재 화면)</string>
+                     </property>
+                     <property name="k_role" stdset="0">
+                      <string>secondary</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QFormLayout" name="formLayout_jibun_layer">
+                     <property name="fieldGrowthPolicy">
+                      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                     </property>
+                     <property name="horizontalSpacing">
+                      <number>10</number>
+                     </property>
+                     <property name="verticalSpacing">
+                      <number>5</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_jibun_layer">
+                       <property name="text">
+                        <string>지적도 레이어</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QWidget" name="widget_jibun_layer_row">
+                       <layout class="QHBoxLayout" name="horizontalLayout_jibun_layer_row">
+                        <property name="spacing">
+                         <number>5</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QgsMapLayerComboBox" name="combo_jibun_layer">
+                          <property name="sizePolicy">
+                           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                           </sizepolicy>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_jibun_detect_layer">
+                          <property name="minimumSize">
+                           <size>
+                            <width>30</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>30</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="toolTip">
+                           <string>지적도 레이어 자동감지: 이름에 지적도·지적·연속지적도·CONT_LDREG가 들어간 폴리곤 레이어를 누를 때마다 레이어 목록 위에서부터 차례로 선택합니다.</string>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QTabWidget" name="tabs_jibun_tools">
+                     <property name="currentIndex">
+                      <number>0</number>
+                     </property>
+                     <property name="documentMode">
+                      <bool>true</bool>
+                     </property>
+                     <widget class="QWidget" name="tab_jibun_export">
+                      <attribute name="title">
+                       <string>내보내기</string>
+                      </attribute>
+                      <layout class="QFormLayout" name="formLayout_jibun_export">
+                       <property name="fieldGrowthPolicy">
+                        <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                       </property>
+                       <property name="horizontalSpacing">
+                        <number>10</number>
+                       </property>
+                       <property name="verticalSpacing">
+                        <number>7</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>6</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>8</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>6</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>7</number>
+                       </property>
+                       <item row="0" column="0" colspan="2">
+                        <widget class="QLabel" name="label_jibun_export_description">
+                         <property name="text">
+                          <string>필지 안에 들어가는 지번 위치·회전·크기를 계산해 DXF TEXT로 저장합니다.</string>
+                         </property>
+                         <property name="wordWrap">
+                          <bool>true</bool>
+                         </property>
+                         <property name="k_role" stdset="0">
+                          <string>hint</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="0">
+                        <widget class="QLabel" name="label_jibun_field">
+                         <property name="text">
+                          <string>지번 필드</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="1" column="1">
+                        <widget class="QWidget" name="widget_jibun_field_row">
+                         <layout class="QHBoxLayout" name="horizontalLayout_jibun_field_row">
+                          <property name="spacing">
+                           <number>5</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QgsFieldComboBox" name="combo_jibun_field">
+                            <property name="sizePolicy">
+                             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                              <horstretch>0</horstretch>
+                              <verstretch>0</verstretch>
+                             </sizepolicy>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_detect_jibun_field">
+                            <property name="minimumSize">
+                             <size>
+                              <width>30</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>30</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="toolTip">
+                             <string>지번 필드 자동감지 (이름 → 값 순서로 찾음)</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="2" column="0">
+                        <widget class="QLabel" name="label_jibun_dxf_path">
+                         <property name="text">
+                          <string>DXF 파일</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="2" column="1">
+                        <widget class="QWidget" name="widget_jibun_dxf_row">
+                         <layout class="QHBoxLayout" name="horizontalLayout_widget_jibun_dxf_row">
+                          <property name="spacing">
+                           <number>5</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QLineEdit" name="input_jibun_dxf_path">
+                            <property name="placeholderText">
+                             <string>DXF 저장 경로를 선택하세요</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_jibun_dxf_browse">
+                            <property name="minimumSize">
+                             <size>
+                              <width>30</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>30</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="toolTip">
+                             <string>저장 위치 찾아보기</string>
+                            </property>
+                            <property name="text">
+                             <string />
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="3" column="0">
+                        <widget class="QLabel" name="label_jibun_save_points">
+                         <property name="text">
+                          <string />
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="3" column="1">
+                        <widget class="QCheckBox" name="cb_jibun_save_points">
+                         <property name="text">
+                          <string>포인트 SHP도 함께 저장</string>
+                         </property>
+                         <property name="checked">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="0">
+                        <widget class="QLabel" name="label_jibun_point_path">
+                         <property name="text">
+                          <string>포인트 SHP</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="4" column="1">
+                        <widget class="QWidget" name="widget_jibun_point_row">
+                         <layout class="QHBoxLayout" name="horizontalLayout_widget_jibun_point_row">
+                          <property name="spacing">
+                           <number>5</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QLineEdit" name="input_jibun_point_path">
+                            <property name="placeholderText">
+                             <string>포인트 SHP 저장 경로를 선택하세요</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_jibun_point_browse">
+                            <property name="minimumSize">
+                             <size>
+                              <width>30</width>
+                              <height>0</height>
+                             </size>
+                            </property>
+                            <property name="maximumSize">
+                             <size>
+                              <width>30</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="toolTip">
+                             <string>저장 위치 찾아보기</string>
+                            </property>
+                            <property name="text">
+                             <string />
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="5" column="0" colspan="2">
+                        <widget class="QToolButton" name="btn_jibun_advanced">
+                         <property name="text">
+                          <string>고급 설정</string>
+                         </property>
+                         <property name="checkable">
+                          <bool>true</bool>
+                         </property>
+                         <property name="toolButtonStyle">
+                          <enum>Qt::ToolButtonTextBesideIcon</enum>
+                         </property>
+                         <property name="arrowType">
+                          <enum>Qt::RightArrow</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="6" column="0" colspan="2">
+                        <widget class="QWidget" name="widget_jibun_advanced">
+                         <layout class="QFormLayout" name="formLayout_jibun_advanced">
+                          <property name="verticalSpacing">
+                           <number>5</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>14</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>4</number>
+                          </property>
+                          <item row="0" column="0">
+                           <widget class="QLabel" name="label_jibun_width_pad">
+                            <property name="text">
+                             <string>글꼴 가로폭 계수</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="1">
+                           <widget class="QDoubleSpinBox" name="spin_jibun_width_pad">
+                            <property name="decimals">
+                             <number>2</number>
+                            </property>
+                            <property name="minimum">
+                             <double>0.5</double>
+                            </property>
+                            <property name="maximum">
+                             <double>5.0</double>
+                            </property>
+                            <property name="singleStep">
+                             <double>0.01</double>
+                            </property>
+                            <property name="value">
+                             <double>1.2</double>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="QLabel" name="label_jibun_floor_height">
+                            <property name="text">
+                             <string>폰트 크기 최솟값</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="1">
+                           <widget class="QDoubleSpinBox" name="spin_jibun_floor_height">
+                            <property name="decimals">
+                             <number>4</number>
+                            </property>
+                            <property name="minimum">
+                             <double>0.0</double>
+                            </property>
+                            <property name="maximum">
+                             <double>999999.0</double>
+                            </property>
+                            <property name="singleStep">
+                             <double>0.01</double>
+                            </property>
+                            <property name="value">
+                             <double>0.2</double>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="0">
+                           <widget class="QLabel" name="label_jibun_pole_tolerance_min">
+                            <property name="text">
+                             <string>이격점 오차 최솟값</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="1">
+                           <widget class="QDoubleSpinBox" name="spin_jibun_pole_tolerance_min">
+                            <property name="decimals">
+                             <number>4</number>
+                            </property>
+                            <property name="minimum">
+                             <double>0.0001</double>
+                            </property>
+                            <property name="maximum">
+                             <double>999999.0</double>
+                            </property>
+                            <property name="singleStep">
+                             <double>0.01</double>
+                            </property>
+                            <property name="value">
+                             <double>0.01</double>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="0">
+                           <widget class="QLabel" name="label_jibun_pole_tolerance_ratio">
+                            <property name="text">
+                             <string>이격점 오차 비율</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="1">
+                           <widget class="QDoubleSpinBox" name="spin_jibun_pole_tolerance_ratio">
+                            <property name="decimals">
+                             <number>4</number>
+                            </property>
+                            <property name="minimum">
+                             <double>0.0001</double>
+                            </property>
+                            <property name="maximum">
+                             <double>999999.0</double>
+                            </property>
+                            <property name="singleStep">
+                             <double>0.01</double>
+                            </property>
+                            <property name="value">
+                             <double>0.01</double>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="4" column="0">
+                           <widget class="QLabel" name="label_jibun_binary_steps">
+                            <property name="text">
+                             <string>축소 탐색 반복 횟수</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="4" column="1">
+                           <widget class="QSpinBox" name="spin_jibun_binary_steps">
+                            <property name="minimum">
+                             <number>1</number>
+                            </property>
+                            <property name="maximum">
+                             <number>30</number>
+                            </property>
+                            <property name="value">
+                             <number>10</number>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="5" column="0">
+                           <widget class="QLabel" name="label_jibun_dxf_height_factor">
+                            <property name="text">
+                             <string>DXF 텍스트 높이 배율</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="5" column="1">
+                           <widget class="QDoubleSpinBox" name="spin_jibun_dxf_height_factor">
+                            <property name="decimals">
+                             <number>3</number>
+                            </property>
+                            <property name="minimum">
+                             <double>0.01</double>
+                            </property>
+                            <property name="maximum">
+                             <double>999999.0</double>
+                            </property>
+                            <property name="singleStep">
+                             <double>0.01</double>
+                            </property>
+                            <property name="value">
+                             <double>0.75</double>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="6" column="0">
+                           <widget class="QLabel" name="label_jibun_fallback_height">
+                            <property name="text">
+                             <string>크기 0일 때 대체값</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="6" column="1">
+                           <widget class="QDoubleSpinBox" name="spin_jibun_fallback_height">
+                            <property name="decimals">
+                             <number>4</number>
+                            </property>
+                            <property name="minimum">
+                             <double>0.01</double>
+                            </property>
+                            <property name="maximum">
+                             <double>999999.0</double>
+                            </property>
+                            <property name="singleStep">
+                             <double>0.01</double>
+                            </property>
+                            <property name="value">
+                             <double>0.2</double>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item row="7" column="0" colspan="2">
+                        <widget class="QPushButton" name="btn_jibun_export">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>34</height>
+                          </size>
+                         </property>
+                         <property name="text">
+                          <string>지번 텍스트 DXF 내보내기</string>
+                         </property>
+                         <property name="k_role" stdset="0">
+                          <string>primary</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item row="8" column="0" colspan="2">
+                        <widget class="QPushButton" name="btn_jibun_label_source">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>34</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>원본 도형과 속성은 수정하지 않고 지번 포인트 라벨 레이어를 위에 추가합니다.</string>
+                         </property>
+                         <property name="text">
+                          <string>지적도 지번 라벨만 표시</string>
+                         </property>
+                         <property name="k_role" stdset="0">
+                          <string>secondary</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="tab_jimok_style">
+                      <attribute name="title">
+                       <string>지목별</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_jimok_style">
+                       <property name="spacing">
+                        <number>7</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>6</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>8</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>6</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>7</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_jimok_description">
+                         <property name="text">
+                          <string>지목 필드가 있으면 그 값을 사용하고, 없으면 지번의 마지막 글자(부호)를 정식 지목명으로 바꿔 '지목' 필드를 만들어 분류합니다.</string>
+                         </property>
+                         <property name="wordWrap">
+                          <bool>true</bool>
+                         </property>
+                         <property name="k_role" stdset="0">
+                          <string>hint</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QFormLayout" name="formLayout_jimok_field">
+                         <property name="fieldGrowthPolicy">
+                          <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                         </property>
+                         <property name="horizontalSpacing">
+                          <number>10</number>
+                         </property>
+                         <property name="verticalSpacing">
+                          <number>5</number>
+                         </property>
+                         <property name="leftMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item row="0" column="0">
+                          <widget class="QLabel" name="label_jimok_field">
+                           <property name="text">
+                            <string>지목 필드</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="0" column="1">
+                          <widget class="QWidget" name="widget_jimok_field_row">
+                           <layout class="QHBoxLayout" name="horizontalLayout_jimok_field_row">
+                            <property name="spacing">
+                             <number>5</number>
+                            </property>
+                            <property name="leftMargin">
+                             <number>0</number>
+                            </property>
+                            <property name="topMargin">
+                             <number>0</number>
+                            </property>
+                            <property name="rightMargin">
+                             <number>0</number>
+                            </property>
+                            <property name="bottomMargin">
+                             <number>0</number>
+                            </property>
+                            <item>
+                             <widget class="QgsFieldComboBox" name="combo_jimok_field">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="btn_detect_jimok_field">
+                              <property name="minimumSize">
+                               <size>
+                                <width>30</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>30</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
+                              <property name="toolTip">
+                               <string>지목 필드 자동감지 (이름 → 값 순서로 찾음)</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_jimok_source">
+                         <property name="wordWrap">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btn_jimok_categorize">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>34</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>선택한 지목 필드로 분류합니다. 지목 필드를 비워 두면 내보내기 탭의 지번 필드 끝 글자를 정식 지목명(예: 장 → 공장용지)으로 바꿔 '지목' 필드에 기록한 뒤 분류합니다.</string>
+                         </property>
+                         <property name="text">
+                          <string>지목별 색상 분류</string>
+                         </property>
+                         <property name="k_role" stdset="0">
+                          <string>primary</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_jimok_style">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint">
+                          <size>
+                           <width>20</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                     <widget class="QWidget" name="tab_owner_style">
+                      <attribute name="title">
+                       <string>소유자별</string>
+                      </attribute>
+                      <layout class="QVBoxLayout" name="verticalLayout_owner_style">
+                       <property name="spacing">
+                        <number>7</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>6</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>8</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>6</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>7</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_owner_description">
+                         <property name="text">
+                          <string>소유자 필드가 있으면 바로 분류하고, 없을 때만 VWorld API를 조회합니다.</string>
+                         </property>
+                         <property name="wordWrap">
+                          <bool>true</bool>
+                         </property>
+                         <property name="k_role" stdset="0">
+                          <string>hint</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <layout class="QFormLayout" name="formLayout_owner_fields">
+                         <property name="fieldGrowthPolicy">
+                          <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                         </property>
+                         <property name="horizontalSpacing">
+                          <number>10</number>
+                         </property>
+                         <property name="verticalSpacing">
+                          <number>5</number>
+                         </property>
+                         <property name="leftMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item row="1" column="0">
+                          <widget class="QLabel" name="label_owner_field">
+                           <property name="text">
+                            <string>소유자 필드</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="1" column="1">
+                          <widget class="QWidget" name="widget_owner_field_row">
+                           <layout class="QHBoxLayout" name="horizontalLayout_owner_field_row">
+                            <property name="spacing">
+                             <number>5</number>
+                            </property>
+                            <property name="leftMargin">
+                             <number>0</number>
+                            </property>
+                            <property name="topMargin">
+                             <number>0</number>
+                            </property>
+                            <property name="rightMargin">
+                             <number>0</number>
+                            </property>
+                            <property name="bottomMargin">
+                             <number>0</number>
+                            </property>
+                            <item>
+                             <widget class="QgsFieldComboBox" name="combo_owner_field">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="btn_detect_owner_field">
+                              <property name="minimumSize">
+                               <size>
+                                <width>30</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>30</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
+                              <property name="toolTip">
+                               <string>소유자 필드 자동감지 (이름 → 값 순서로 찾음)</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                         </item>
+                         <item row="0" column="0">
+                          <widget class="QLabel" name="label_owner_pnu_field">
+                           <property name="text">
+                            <string>PNU 필드</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="0" column="1">
+                          <widget class="QWidget" name="widget_owner_pnu_field_row">
+                           <layout class="QHBoxLayout" name="horizontalLayout_owner_pnu_field_row">
+                            <property name="spacing">
+                             <number>5</number>
+                            </property>
+                            <property name="leftMargin">
+                             <number>0</number>
+                            </property>
+                            <property name="topMargin">
+                             <number>0</number>
+                            </property>
+                            <property name="rightMargin">
+                             <number>0</number>
+                            </property>
+                            <property name="bottomMargin">
+                             <number>0</number>
+                            </property>
+                            <item>
+                             <widget class="QgsFieldComboBox" name="combo_owner_pnu_field">
+                              <property name="sizePolicy">
+                               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                               </sizepolicy>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="btn_detect_pnu_field">
+                              <property name="minimumSize">
+                               <size>
+                                <width>30</width>
+                                <height>0</height>
+                               </size>
+                              </property>
+                              <property name="maximumSize">
+                               <size>
+                                <width>30</width>
+                                <height>16777215</height>
+                               </size>
+                              </property>
+                              <property name="toolTip">
+                               <string>PNU 필드 자동감지 (이름 → 값 순서로 찾음)</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_owner_source">
+                         <property name="wordWrap">
+                          <bool>true</bool>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_owner_colors">
+                         <property name="text">
+                          <string>분류색: 사유지 주황 · 국유지 하늘색 · 공유지 초록</string>
+                         </property>
+                         <property name="wordWrap">
+                          <bool>true</bool>
+                         </property>
+                         <property name="k_role" stdset="0">
+                          <string>hint</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btn_owner_categorize">
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>34</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>선택한 소유자 필드를 먼저 사용합니다. 소유자 필드를 비워 두거나 값을 분류하지 못하면 PNU 필드로 VWorld API를 조회합니다. 원본 속성은 수정하지 않습니다.</string>
+                         </property>
+                         <property name="text">
+                          <string>소유자별 색상 분류</string>
+                         </property>
+                         <property name="k_role" stdset="0">
+                          <string>primary</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <spacer name="verticalSpacer_owner_style">
+                         <property name="orientation">
+                          <enum>Qt::Vertical</enum>
+                         </property>
+                         <property name="sizeHint">
+                          <size>
+                           <width>20</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                        </spacer>
+                       </item>
+                      </layout>
+                     </widget>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QFormLayout" name="formLayout_jibun_status">
+                     <property name="fieldGrowthPolicy">
+                      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                     </property>
+                     <property name="horizontalSpacing">
+                      <number>10</number>
+                     </property>
+                     <property name="verticalSpacing">
+                      <number>4</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_jibun_progress">
+                       <property name="text">
+                        <string>진행률</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QProgressBar" name="progress_jibun_export">
+                       <property name="value">
+                        <number>0</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_jibun_status_title">
+                       <property name="text">
+                        <string>상태</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLabel" name="label_jibun_status">
+                       <property name="text">
+                        <string>실행할 준비가 되었습니다.</string>
+                       </property>
+                       <property name="wordWrap">
+                        <bool>true</bool>
+                       </property>
+                       <property name="k_role" stdset="0">
+                        <string>hint</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_spatial_tools">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint">
+                   <size>
+                    <width>20</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_elevation">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">  background-color: rgb(255, 255, 255); </string>
+           </property>
+           <attribute name="title">
+            <string>표고경사
+분석</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_elevation_tab">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QScrollArea" name="scroll_elevation">
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scroll_elevation_contents">
+               <property name="styleSheet">
+                <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-top: 8px;
+    font-weight: 600;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 4px;
+    color: rgb(45, 52, 66);
+}
+QPushButton[k_role="primary"] {
+    color: rgb(255, 255, 255);
+    background-color: rgb(42, 120, 214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 7px 12px;
+}
+QPushButton[k_role="primary"]:hover { background-color: rgb(77, 143, 226); }
+QPushButton[k_role="primary"]:pressed { background-color: rgb(32, 93, 169); }
+QPushButton[k_role="primary"]:disabled { background-color: rgb(178, 187, 199); }
+QPushButton[k_role="secondary"] {
+    color: rgb(42, 120, 214);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(42, 120, 214);
+    border-radius: 10px;
+    padding: 7px 12px;
+}
+QPushButton[k_role="secondary"]:hover { background-color: rgb(234, 243, 255); }
+QPushButton[k_role="secondary"]:pressed { background-color: rgb(214, 231, 252); }
+QPushButton[k_role="secondary"]:disabled {
+    color: rgb(145, 151, 163);
+    border-color: rgb(178, 187, 199);
+}
+QToolButton#btn_jibun_advanced { border: none; color: rgb(42, 120, 214); padding: 3px; }
+QLabel[k_role="hint"] { color: rgb(85, 93, 109); }
+QComboBox QAbstractItemView {
+    background-color: rgb(255, 255, 255);
+    color: rgb(45, 52, 66);
+    selection-background-color: rgb(214, 226, 242);
+    selection-color: rgb(45, 52, 66);
+}</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_elevation_contents">
+                 <property name="spacing">
+                  <number>7</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>6</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>3</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>6</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>6</number>
+                 </property>
+                 <item>
+                  <widget class="QGroupBox" name="group_elevation_analysis">
+                   <property name="title">
+                    <string>표고·경사 분석</string>
+                   </property>
+                   <layout class="QFormLayout" name="formLayout_elevation">
+                    <property name="fieldGrowthPolicy">
+                     <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                    </property>
+                    <property name="horizontalSpacing">
+                     <number>10</number>
+                    </property>
+                    <property name="verticalSpacing">
+                     <number>7</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>10</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>14</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>10</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>10</number>
+                    </property>
+                    <item row="0" column="0" colspan="2">
+                     <widget class="QLabel" name="label_elevation_description">
+                      <property name="text">
+                       <string>등고선 레이어를 고르면 그 등고선으로, 비워 두면 VWorld 수치지형도를 백그라운드로 내려받아 TIN 표고·간격 등고선·경사도를 만듭니다.</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="k_role" stdset="0">
+                       <string>hint</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="0">
+                     <widget class="QLabel" name="label_elevation_contour_layer">
+                      <property name="text">
+                       <string>등고선 레이어</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="1" column="1">
+                     <widget class="QgsMapLayerComboBox" name="combo_elevation_contour_layer">
+                      <property name="toolTip">
+                       <string>이미 가진 등고선(선) 레이어로 분석합니다. 비워 두면 위 시도·시군구의 VWorld 수치지형도를 자동으로 내려받습니다.</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="0">
+                     <widget class="QLabel" name="label_elevation_contour_field">
+                      <property name="text">
+                       <string>등고 필드</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="2" column="1">
+                     <widget class="QgsFieldComboBox" name="combo_elevation_contour_field">
+                      <property name="toolTip">
+                       <string>등고선의 표고(높이) 숫자 필드입니다. 레이어를 고르면 CONT·ELEV·표고 등의 이름으로 자동 선택됩니다.</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="0">
+                     <widget class="QLabel" name="label_elevation_province">
+                      <property name="text">
+                       <string>시도</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="3" column="1">
+                     <widget class="QComboBox" name="combo_elevation_province" />
+                    </item>
+                    <item row="4" column="0">
+                     <widget class="QLabel" name="label_elevation_location">
+                      <property name="text">
+                       <string>시군구 위치</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="4" column="1">
+                     <widget class="QWidget" name="widget_elevation_location">
+                      <layout class="QHBoxLayout" name="horizontalLayout_elevation_location">
+                       <property name="spacing">
+                        <number>6</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QComboBox" name="combo_elevation_district">
+                         <property name="editable">
+                          <bool>true</bool>
+                         </property>
+                         <property name="insertPolicy">
+                          <enum>QComboBox::NoInsert</enum>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btn_elevation_center_location">
+                         <property name="toolTip">
+                          <string>현재 QGIS 지도 화면 정중앙의 시도·시군구와 행정경계를 가져옵니다.</string>
+                         </property>
+                         <property name="text">
+                          <string>화면 중심 자동선택</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="5" column="0">
+                     <widget class="QLabel" name="label_elevation_current_crs_title">
+                      <property name="text">
+                       <string>현재 좌표계</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="5" column="1">
+                     <widget class="QLabel" name="label_elevation_current_crs">
+                      <property name="toolTip">
+                       <string>현재 QGIS 프로젝트의 지도 좌표계입니다. 다운로드한 수치지형도 원본 좌표계는 압축을 푼 뒤 각 SHP의 .prj에서 별도로 확인합니다.</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="textInteractionFlags">
+                       <set>Qt::TextSelectableByMouse</set>
+                      </property>
+                      <property name="k_role" stdset="0">
+                       <string>hint</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="6" column="0">
+                     <widget class="QLabel" name="label_elevation_output_crs">
+                      <property name="text">
+                       <string>결과 좌표계</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="6" column="1">
+                     <widget class="QComboBox" name="combo_elevation_output_crs" />
+                    </item>
+                    <item row="7" column="0">
+                     <widget class="QLabel" name="label_elevation_clip">
+                      <property name="text">
+                       <string>분석 범위</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="7" column="1">
+                     <widget class="QCheckBox" name="cb_elevation_clip_boundary">
+                      <property name="toolTip">
+                       <string>'화면 중심 자동선택'으로 가져온 VWorld 시군구 경계를 사용합니다.</string>
+                      </property>
+                      <property name="text">
+                       <string>선택한 시군구 행정경계로 결과 자르기</string>
+                      </property>
+                      <property name="checked">
+                       <bool>false</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="8" column="0">
+                     <widget class="QLabel" name="label_elevation_options">
+                      <property name="text">
+                       <string>분석 설정</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="8" column="1">
+                     <widget class="QWidget" name="widget_elevation_options">
+                      <layout class="QHBoxLayout" name="horizontalLayout_elevation_options">
+                       <property name="spacing">
+                        <number>8</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_elevation_pixel_size">
+                         <property name="text">
+                          <string>TIN 픽셀</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QDoubleSpinBox" name="spin_elevation_pixel_size">
+                         <property name="suffix">
+                          <string> m</string>
+                         </property>
+                         <property name="decimals">
+                          <number>1</number>
+                         </property>
+                         <property name="minimum">
+                          <double>1.0</double>
+                         </property>
+                         <property name="maximum">
+                          <double>200.0</double>
+                         </property>
+                         <property name="singleStep">
+                          <double>1.0</double>
+                         </property>
+                         <property name="value">
+                          <double>10.0</double>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLabel" name="label_elevation_contour_interval">
+                         <property name="text">
+                          <string>분류 간격</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QDoubleSpinBox" name="spin_elevation_contour_interval">
+                         <property name="suffix">
+                          <string> m</string>
+                         </property>
+                         <property name="decimals">
+                          <number>0</number>
+                         </property>
+                         <property name="minimum">
+                          <double>1.0</double>
+                         </property>
+                         <property name="maximum">
+                          <double>1000.0</double>
+                         </property>
+                         <property name="singleStep">
+                          <double>1.0</double>
+                         </property>
+                         <property name="value">
+                          <double>50.0</double>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item row="9" column="0">
+                     <widget class="QLabel" name="label_elevation_slope">
+                      <property name="text">
+                       <string>경사 분석</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="9" column="1">
+                     <widget class="QCheckBox" name="cb_elevation_slope">
+                      <property name="toolTip">
+                       <string>TIN 보간한 표고 래스터로 경사도(도, °) 래스터를 만들고 구간별 색으로 표시합니다.</string>
+                      </property>
+                      <property name="text">
+                       <string>TIN 표고로 경사도(°) 만들기</string>
+                      </property>
+                      <property name="checked">
+                       <bool>true</bool>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="10" column="0">
+                     <widget class="QLabel" name="label_elevation_progress">
+                      <property name="text">
+                       <string>진행률</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="10" column="1">
+                     <widget class="QProgressBar" name="progress_elevation_analysis">
+                      <property name="value">
+                       <number>0</number>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="11" column="0">
+                     <widget class="QLabel" name="label_elevation_status_title">
+                      <property name="text">
+                       <string>상태</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="11" column="1">
+                     <widget class="QLabel" name="label_elevation_status">
+                      <property name="text">
+                       <string>VWorld 로그인 후 실행할 수 있습니다.</string>
+                      </property>
+                      <property name="wordWrap">
+                       <bool>true</bool>
+                      </property>
+                      <property name="k_role" stdset="0">
+                       <string>hint</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item row="12" column="0" colspan="2">
+                     <widget class="QPushButton" name="btn_elevation_analysis">
+                      <property name="minimumSize">
+                       <size>
+                        <width>0</width>
+                        <height>34</height>
+                       </size>
+                      </property>
+                      <property name="text">
+                       <string>표고·경사 분석</string>
+                      </property>
+                      <property name="k_role" stdset="0">
+                       <string>primary</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer_elevation_tab">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint">
+                    <size>
+                     <width>20</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_continuous_theme">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">  background-color: rgb(255, 255, 255); </string>
+           </property>
+           <attribute name="title">
+            <string>연속
+주제도</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_theme_tab">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QScrollArea" name="scroll_theme">
+              <property name="frameShape">
+               <enum>QFrame::NoFrame</enum>
+              </property>
+              <property name="horizontalScrollBarPolicy">
+               <enum>Qt::ScrollBarAlwaysOff</enum>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scroll_theme_contents">
+               <property name="styleSheet">
+                <string notr="true">QGroupBox {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(200, 200, 210);
+    border-radius: 10px;
+    margin-top: 10px;
+    padding-top: 8px;
+    font-weight: 600;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 4px;
+    color: rgb(45, 52, 66);
+}
+QPushButton[k_role="primary"] {
+    color: rgb(255, 255, 255);
+    background-color: rgb(42, 120, 214);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 7px 12px;
+}
+QPushButton[k_role="primary"]:hover { background-color: rgb(77, 143, 226); }
+QPushButton[k_role="primary"]:pressed { background-color: rgb(32, 93, 169); }
+QPushButton[k_role="primary"]:disabled { background-color: rgb(178, 187, 199); }
+QPushButton[k_role="secondary"] {
+    color: rgb(42, 120, 214);
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(42, 120, 214);
+    border-radius: 10px;
+    padding: 7px 12px;
+}
+QPushButton[k_role="secondary"]:hover { background-color: rgb(234, 243, 255); }
+QPushButton[k_role="secondary"]:pressed { background-color: rgb(214, 231, 252); }
+QPushButton[k_role="secondary"]:disabled {
+    color: rgb(145, 151, 163);
+    border-color: rgb(178, 187, 199);
+}
+QToolButton#btn_jibun_advanced { border: none; color: rgb(42, 120, 214); padding: 3px; }
+QLabel[k_role="hint"] { color: rgb(85, 93, 109); }
+QComboBox QAbstractItemView {
+    background-color: rgb(255, 255, 255);
+    color: rgb(45, 52, 66);
+    selection-background-color: rgb(214, 226, 242);
+    selection-color: rgb(45, 52, 66);
+}</string>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_theme_contents">
+                <property name="spacing">
+                 <number>7</number>
+                </property>
+                <property name="leftMargin">
+                 <number>6</number>
+                </property>
+                <property name="topMargin">
+                 <number>3</number>
+                </property>
+                <property name="rightMargin">
+                 <number>6</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>6</number>
+                </property>
+                <item>
+                 <widget class="QGroupBox" name="group_continuous_theme">
+                  <property name="title">
+                   <string>연속주제도 일괄 다운로드</string>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_theme_group">
+                   <property name="spacing">
+                    <number>7</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>10</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>14</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>10</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>10</number>
+                   </property>
+                   <item>
+                    <widget class="QLabel" name="label_theme_description">
+                     <property name="text">
+                      <string>VWorld 연속주제도를 시도 단위로 받아 '●시도 연속주제도' 폴더 양식에 맞춰 저장하고 압축을 풉니다. VWorld 로그인(설정 탭)이 필요합니다.</string>
+                     </property>
+                     <property name="wordWrap">
+                      <bool>true</bool>
+                     </property>
+                     <property name="k_role" stdset="0">
+                      <string>hint</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QFormLayout" name="formLayout_theme">
+                     <property name="fieldGrowthPolicy">
+                      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                     </property>
+                     <property name="horizontalSpacing">
+                      <number>10</number>
+                     </property>
+                     <property name="verticalSpacing">
+                      <number>5</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_theme_province">
+                       <property name="text">
+                        <string>시도</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QComboBox" name="combo_theme_province" />
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_theme_crs">
+                       <property name="text">
+                        <string>좌표계</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QComboBox" name="combo_theme_crs" />
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QLabel" name="label_theme_root">
+                       <property name="text">
+                        <string>저장 폴더</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="1">
+                      <widget class="QWidget" name="widget_theme_root_row">
+                       <layout class="QHBoxLayout" name="horizontalLayout_theme_root_row">
+                        <property name="spacing">
+                         <number>5</number>
+                        </property>
+                        <property name="leftMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                         <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QLineEdit" name="input_theme_root">
+                          <property name="placeholderText">
+                           <string>저장할 최상위 폴더 (예: …\09. 공통SHP)</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item>
+                         <widget class="QPushButton" name="btn_theme_root_browse">
+                          <property name="minimumSize">
+                           <size>
+                            <width>30</width>
+                            <height>0</height>
+                           </size>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>30</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="toolTip">
+                           <string>저장 폴더 찾아보기</string>
+                          </property>
+                          <property name="text">
+                           <string />
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QLabel" name="label_theme_district">
+                       <property name="text">
+                        <string>시군구</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="1">
+                      <widget class="QComboBox" name="combo_theme_district">
+                       <property name="toolTip">
+                        <string>연속지적도는 시군구 단위 자료라 여기서 고른 지역만 받습니다.</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_theme_tree_tools">
+                     <property name="spacing">
+                      <number>6</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QPushButton" name="btn_theme_check_all">
+                       <property name="text">
+                        <string>전체선택</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_theme_uncheck_all">
+                       <property name="text">
+                        <string>전체해제</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_theme_tree_tools">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint">
+                        <size>
+                         <width>0</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_theme_expand_all">
+                       <property name="text">
+                        <string>펼치기</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_theme_collapse_all">
+                       <property name="text">
+                        <string>접기</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QTreeWidget" name="tree_theme_items">
+                     <property name="minimumSize">
+                      <size>
+                       <width>0</width>
+                       <height>300</height>
+                      </size>
+                     </property>
+                     <property name="headerHidden">
+                      <bool>true</bool>
+                     </property>
+                     <column>
+                      <property name="text">
+                       <string>항목</string>
+                      </property>
+                     </column>
+                     <column>
+                      <property name="text">
+                       <string>기준일</string>
+                      </property>
+                     </column>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QFormLayout" name="formLayout_theme_load">
+                     <property name="fieldGrowthPolicy">
+                      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                     </property>
+                     <property name="horizontalSpacing">
+                      <number>10</number>
+                     </property>
+                     <property name="verticalSpacing">
+                      <number>5</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_theme_load_date">
+                       <property name="text">
+                        <string>불러올 기준일</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QComboBox" name="combo_theme_load_date">
+                       <property name="toolTip">
+                        <string>폴더에 기준일별로 쌓인 자료 중 무엇을 불러올지 고릅니다. 날짜를 고르면 항목마다 그 날짜 이전 자료 중 가장 최근 것을 불러옵니다.</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="cb_theme_load_qgis">
+                     <property name="toolTip">
+                      <string>받은 SHP(이미 최신이라 건너뛴 것 포함)를 폴더와 같은 그룹 구조로 QGIS에 불러옵니다. 이미 열려 있는 파일은 다시 넣지 않습니다.</string>
+                     </property>
+                     <property name="text">
+                      <string>다운로드 후 바로 QGIS로 불러오기</string>
+                     </property>
+                     <property name="checked">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_theme_buttons">
+                     <property name="spacing">
+                      <number>6</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item>
+                      <widget class="QPushButton" name="btn_theme_check_update">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>34</height>
+                        </size>
+                       </property>
+                       <property name="toolTip">
+                        <string>받지 않고 VWorld의 최신 기준일만 읽어 폴더 자료와 비교합니다(로그인 필요).</string>
+                       </property>
+                       <property name="text">
+                        <string>갱신 확인</string>
+                       </property>
+                       <property name="k_role" stdset="0">
+                        <string>secondary</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_theme_download">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>34</height>
+                        </size>
+                       </property>
+                       <property name="toolTip">
+                        <string>폴더에 없는 새 기준일 자료만 받아 저장·압축 해제합니다. 예전 기준일 자료는 지우지 않고 쌓입니다.</string>
+                       </property>
+                       <property name="text">
+                        <string>다운로드</string>
+                       </property>
+                       <property name="k_role" stdset="0">
+                        <string>primary</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="btn_theme_load">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>34</height>
+                        </size>
+                       </property>
+                       <property name="toolTip">
+                        <string>다운로드 없이 폴더에 있는 자료를 '불러올 기준일' 기준으로 QGIS에 불러옵니다.</string>
+                       </property>
+                       <property name="text">
+                        <string>불러오기</string>
+                       </property>
+                       <property name="k_role" stdset="0">
+                        <string>secondary</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QFormLayout" name="formLayout_theme_status">
+                     <property name="fieldGrowthPolicy">
+                      <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+                     </property>
+                     <property name="horizontalSpacing">
+                      <number>10</number>
+                     </property>
+                     <property name="verticalSpacing">
+                      <number>4</number>
+                     </property>
+                     <property name="leftMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="topMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="rightMargin">
+                      <number>0</number>
+                     </property>
+                     <property name="bottomMargin">
+                      <number>0</number>
+                     </property>
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_theme_progress">
+                       <property name="text">
+                        <string>진행률</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QProgressBar" name="progress_theme">
+                       <property name="value">
+                        <number>0</number>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="label_theme_status_title">
+                       <property name="text">
+                        <string>상태</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLabel" name="label_theme_status">
+                       <property name="text">
+                        <string>시도와 항목을 고르고 일괄 다운로드를 누르세요.</string>
+                       </property>
+                       <property name="wordWrap">
+                        <bool>true</bool>
+                       </property>
+                       <property name="k_role" stdset="0">
+                        <string>hint</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_theme_tab">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint">
+                   <size>
+                    <width>20</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tab_settings">
+           <property name="styleSheet">
+            <string notr="true">  background-color: rgb(255, 255, 255); </string>
+           </property>
+           <attribute name="title">
+            <string>설정</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_settings">
+            <property name="spacing">
+             <number>7</number>
+            </property>
+            <property name="leftMargin">
+             <number>6</number>
+            </property>
+            <property name="topMargin">
+             <number>6</number>
+            </property>
+            <property name="rightMargin">
+             <number>6</number>
+            </property>
+            <property name="bottomMargin">
+             <number>6</number>
+            </property>
             <item>
              <widget class="QGroupBox" name="groupBox_6">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -2655,6 +5079,12 @@ QCheckBox::indicator:checked {
             </item>
             <item>
              <widget class="QGroupBox" name="groupBox_7">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -2819,204 +5249,18 @@ QCheckBox::indicator:checked {
               </layout>
              </widget>
             </item>
-           </layout>
-          </widget>
-          <widget class="QWidget" name="tab_2">
-           <property name="styleSheet">
-            <string notr="true">  background-color: rgb(255, 255, 255); </string>
-           </property>
-           <attribute name="title">
-            <string>Vworld API 호출</string>
-           </attribute>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="0" column="0">
-             <widget class="QCheckBox" name="cb_Temporary_api">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
+            <item>
+             <spacer name="verticalSpacer_settings">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
               </property>
-              <property name="maximumSize">
+              <property name="sizeHint">
                <size>
-                <width>18</width>
-                <height>21</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Segoe UI</family>
-                <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="toolTipDuration">
-               <number>-1</number>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QCheckBox::indicator {
-    width: 16px;
-    height: 16px;
-    border: 1px solid rgb(200, 200, 210);
-    border-radius: 4px;
-    background-color: rgb(255, 255, 255);
-}
-
-QCheckBox::indicator:hover {
-    border: 1px solid rgb(109, 167, 242);
-}
-
-QCheckBox::indicator:checked {
-    background-color:  rgb(42,120,214);
-    border: 1px solid  rgb(42,120,214);
-}
-
-</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>15</width>
-                <height>15</height>
-               </size>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
-              </property>
-              <property name="autoRepeat">
-               <bool>false</bool>
-              </property>
-              <property name="autoRepeatDelay">
-               <number>300</number>
-              </property>
-              <property name="autoRepeatInterval">
-               <number>100</number>
-              </property>
-              <property name="tristate">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0" colspan="3">
-             <widget class="QTreeView" name="treeView">
-              <property name="font">
-               <font>
-                <family>Noto Sans KR</family>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(200, 200, 200);
-    border-radius: 6px;</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0" colspan="2">
-             <widget class="QLineEdit" name="input_tree_search">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="font">
-               <font>
-                <family>Noto Sans KR</family>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(200, 200, 200);
-    border-radius: 6px;</string>
-              </property>
-              <property name="placeholderText">
-               <string>레이어 검색 (예: 용도지역, 시군구...)</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QPushButton" name="btn_tree_toggle_all">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>60</width>
+                <width>20</width>
                 <height>0</height>
                </size>
               </property>
-              <property name="font">
-               <font>
-                <family>Noto Sans KR</family>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">
-    color: rgb(85, 93, 109);
-    background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(200, 200, 200);
-    border-radius: 6px;</string>
-              </property>
-              <property name="text">
-               <string>접기</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="label_Temporary">
-              <property name="font">
-               <font>
-                <family>Noto Sans KR</family>
-                <pointsize>9</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: rgb(85, 93, 109);</string>
-              </property>
-              <property name="text">
-               <string>파일 저장 (기본값 : 임시레이어, 체크 시 현재화면 SHP저장)</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0" colspan="3">
-             <widget class="QLabel" name="label_19">
-              <property name="font">
-               <font>
-                <family>Noto Sans KR</family>
-                <pointsize>9</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">color: rgb(85, 93, 109);</string>
-              </property>
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;▶ 2D데이터 : 브이월드 자체 방식 데이터 &lt;/span&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt; ▶ WFS : 국제 표준 기준 방식 데이터&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-size:8pt; color:#ffffff;&quot;&gt;.00&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;둘다 같은 자료입니다.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-              </property>
-             </widget>
+             </spacer>
             </item>
            </layout>
           </widget>
@@ -3148,6 +5392,18 @@ QPushButton:pressed {
    </layout>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsFieldComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgis.gui</header>
+  </customwidget>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgis.gui</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -7,7 +7,7 @@ import random
 from qgis.core import *
 from qgis.gui import QgsRubberBand
 from qgis.PyQt.QtGui import QColor
-from qgis.PyQt import QtGui
+from qgis.PyQt import QtGui, QtWidgets
 from qgis.PyQt.QtCore import QVariant
 from .dict_DB import kcode_dict, STYLES_dict, STYLES_RANDOM, STYLES_codeX_dict, api_dict, tree_structure, kcode_dict_Reverse, api_field_cnd
 from .symbol_style_utils import build_symbol_from_style
@@ -22,6 +22,111 @@ from qgis.core import (
     QgsPalLayerSettings, QgsTextFormat, QgsTextBufferSettings,
     QgsTextBackgroundSettings, QgsVectorLayerSimpleLabeling, QgsPalLayerSettings, QgsUnitTypes
 )
+
+
+VWORLD_2D_PAGE_SIZE = 1000
+VWORLD_2D_MAX_FEATURES = 10000
+
+
+def _as_positive_int(value, default):
+    try:
+        number = int(value)
+    except (TypeError, ValueError):
+        return default
+    return number if number > 0 else default
+
+
+def _fetch_vworld_2d_pages(
+    params,
+    max_features=VWORLD_2D_MAX_FEATURES,
+    urlopen=None,
+    progress_callback=None,
+):
+    if urlopen is None:
+        urlopen = urllib.request.urlopen
+
+    try:
+        requested_max = int(max_features)
+    except (TypeError, ValueError):
+        requested_max = VWORLD_2D_MAX_FEATURES
+    requested_max = max(1, min(requested_max, VWORLD_2D_MAX_FEATURES))
+    request_page_limit = (
+        requested_max + VWORLD_2D_PAGE_SIZE - 1
+    ) // VWORLD_2D_PAGE_SIZE
+
+    merged_response = None
+    merged_features = []
+    response_page_total = request_page_limit
+    total_records = 0
+    loaded_page_count = 0
+
+    for page_number in range(1, request_page_limit + 1):
+        page_params = dict(params)
+        page_params["size"] = str(VWORLD_2D_PAGE_SIZE)
+        page_params["page"] = str(page_number)
+        url = "https://api.vworld.kr/req/data?" + urllib.parse.urlencode(page_params)
+
+        with urlopen(url, timeout=30) as response:
+            page_data = json.loads(response.read().decode("utf-8"))
+
+        response_root = page_data.get("response", {})
+        status = response_root.get("status")
+
+        if status != "OK":
+            if page_number == 1:
+                return page_data
+            error_text = response_root.get("error", {}).get(
+                "text", f"{page_number}페이지 응답 상태: {status or '알 수 없음'}"
+            )
+            raise RuntimeError(error_text)
+
+        result = response_root.get("result", {})
+        collection = result.get("featureCollection", {})
+        page_features = collection.get("features", []) or []
+
+        if merged_response is None:
+            merged_response = page_data
+
+        remaining = requested_max - len(merged_features)
+        merged_features.extend(page_features[:remaining])
+        loaded_page_count = page_number
+
+        page_info = response_root.get("page", {}) or {}
+        record_info = response_root.get("record", {}) or {}
+        total_records = _as_positive_int(record_info.get("total"), total_records)
+        if page_number == 1:
+            response_page_total = _as_positive_int(
+                page_info.get("total"),
+                (
+                    total_records + VWORLD_2D_PAGE_SIZE - 1
+                ) // VWORLD_2D_PAGE_SIZE if total_records else request_page_limit,
+            )
+
+        if progress_callback:
+            progress_callback(
+                page_number,
+                min(response_page_total, request_page_limit),
+                len(merged_features),
+                min(total_records or requested_max, requested_max),
+            )
+
+        if (
+            len(merged_features) >= requested_max
+            or page_number >= response_page_total
+            or len(page_features) < VWORLD_2D_PAGE_SIZE
+        ):
+            break
+
+    if merged_response is None:
+        return None
+
+    merged_root = merged_response["response"]
+    merged_root["result"]["featureCollection"]["features"] = merged_features
+    merged_root.setdefault("record", {})["current"] = len(merged_features)
+    merged_root.setdefault("page", {})["current"] = loaded_page_count
+    merged_root["page"]["size"] = VWORLD_2D_PAGE_SIZE
+    merged_root["page"]["total"] = response_page_total
+    return merged_response
 
 def _save_layer_as_shp(vlayer, layer_name):
     project = QgsProject.instance()
@@ -90,31 +195,35 @@ def show_map_Vworld_2Dapi(iface, target_value, ms,show_warning=True, add_to_API=
 
 
     def Vworld_2Dapi():
-        base_url = "https://api.vworld.kr/req/data?"
-
         params = {
                 "service": "data",
                 "request": "GetFeature",
                 "format": "json",
-                "size": "1000",
                 "data": target_key,
                 "geomFilter" : BOX,
                 "crs": "epsg:4326",
                 "key": vworld_key
             }
 
-        base_params = urllib.parse.urlencode(params)
-        url = base_url + base_params
+        max_features = VWORLD_2D_MAX_FEATURES
+
+        def show_page_progress(page_number, page_total, loaded_count, target_count):
+            print(
+                f"[VWorld 2D API] {page_number}/{page_total}페이지 · "
+                f"{loaded_count:,}/{target_count:,}건"
+            )
+            QtWidgets.QApplication.processEvents()
 
         try:
-            with urllib.request.urlopen(url) as response:
-                result_bytes = response.read()
-                result_str = result_bytes.decode('utf-8')
-                data_dict = json.loads(result_str)
-                return data_dict
+            return _fetch_vworld_2d_pages(
+                params,
+                max_features=max_features,
+                progress_callback=show_page_progress,
+            )
         except Exception as e:
-                print(f"[ERROR] 네트워크 요청 실패: {e}")
-                return None
+            safe_error = str(e).replace(vworld_key, "***")
+            print(f"[ERROR] VWorld 2D 데이터 요청 실패: {safe_error}")
+            return None
 
     features = Vworld_2Dapi()
 
@@ -145,6 +254,15 @@ def show_map_Vworld_2Dapi(iface, target_value, ms,show_warning=True, add_to_API=
     if not res["result"]["featureCollection"]["features"]:
         print("조회 결과가 없습니다.")
         return
+
+    loaded_count = len(res["result"]["featureCollection"]["features"])
+    total_count = _as_positive_int(res.get("record", {}).get("total"), loaded_count)
+    if total_count > loaded_count:
+        print(
+            f"[안내] 전체 {total_count:,}건 중 설정한 최대 {loaded_count:,}건을 불러왔습니다."
+        )
+    else:
+        print(f"[OK] VWorld 2D 데이터 {loaded_count:,}건을 불러왔습니다.")
 
 
     geojson_data = json.dumps(features["response"]["result"]["featureCollection"],ensure_ascii=False)
